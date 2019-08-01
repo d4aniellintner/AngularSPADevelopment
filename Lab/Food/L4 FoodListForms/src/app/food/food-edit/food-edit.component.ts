@@ -42,9 +42,4 @@ export class FoodEditComponent implements OnInit {
     console.log("food to save", form.value);
     this.saveFood.emit(form.value);
   }
-
-  doSave() {
-    console.log("food to save", this.food);
-    this.saveFood.emit(this.food);
-  }
 }

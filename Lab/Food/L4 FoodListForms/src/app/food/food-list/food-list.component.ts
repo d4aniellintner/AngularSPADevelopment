@@ -46,7 +46,17 @@ export class FoodListComponent implements OnInit {
   }
 
   addFood() {
-    this.editSelected.emit({ id: 0, name: "", price: 0, calories: 0 });
+    console.log(this.getNextId());
+    this.editSelected.emit({
+      id: this.getNextId(),
+      name: "",
+      price: 0,
+      calories: 0
+    });
+  }
+
+  getNextId(): number {
+    return this.food.reduce((acc, f) => (acc = acc > f.id ? acc : f.id), 0) + 1;
   }
 
   selectFood(p: FoodItem) {
