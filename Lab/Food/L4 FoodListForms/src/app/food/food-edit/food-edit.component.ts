@@ -1,5 +1,13 @@
-import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  SimpleChanges
+} from "@angular/core";
 import { FoodItem } from "src/app/shared/foodItem";
+import { FormBuilder, FormGroup } from "@angular/forms";
 
 @Component({
   selector: "app-food-edit",
@@ -7,12 +15,33 @@ import { FoodItem } from "src/app/shared/foodItem";
   styleUrls: ["./food-edit.component.scss"]
 })
 export class FoodEditComponent implements OnInit {
-  constructor() {}
+  constructor(private fb: FormBuilder) {
+    this.form = this.fb.group({
+      id: 0,
+      name: "",
+      price: 0,
+      calories: 0
+    });
+  }
 
   @Input() food: FoodItem;
   @Output() saveFood: EventEmitter<FoodItem> = new EventEmitter();
 
+  form: FormGroup;
+
   ngOnInit() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.food != undefined) {
+      console.log("receiving food", changes.food.currentValue);
+      this.form.setValue(changes.food.currentValue);
+    }
+  }
+
+  saveForm(form) {
+    console.log("food to save", form.value);
+    this.saveFood.emit(form.value);
+  }
 
   doSave() {
     console.log("food to save", this.food);
