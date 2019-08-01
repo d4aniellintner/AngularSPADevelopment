@@ -20,7 +20,9 @@ export class FoodListComponent implements OnInit {
   @Input()
   food: FoodItem[];
   @Output()
-  foodSelected: EventEmitter<FoodItem> = new EventEmitter();
+  editSelected: EventEmitter<FoodItem> = new EventEmitter();
+  @Output()
+  deleteSelected: EventEmitter<FoodItem> = new EventEmitter();
 
   ngOnInit() {}
 
@@ -29,7 +31,14 @@ export class FoodListComponent implements OnInit {
     this.dataSource = new MatTableDataSource(changes.food.currentValue);
   }
 
-  displayedColumns: string[] = ["id", "name", "price", "calories"];
+  displayedColumns: string[] = [
+    "id",
+    "name",
+    "price",
+    "calories",
+    "deleteItem",
+    "editItem"
+  ];
   dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource([]);
 
   applyFilter(filterValue: string) {
@@ -37,6 +46,10 @@ export class FoodListComponent implements OnInit {
   }
 
   selectFood(p: FoodItem) {
-    this.foodSelected.emit(p);
+    this.editSelected.emit(p);
+  }
+
+  deleteFood(p: FoodItem) {
+    this.deleteSelected.emit(p);
   }
 }

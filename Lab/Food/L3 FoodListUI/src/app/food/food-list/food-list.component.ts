@@ -22,15 +22,15 @@ export class FoodListComponent implements OnInit {
   @Output()
   foodSelected: EventEmitter<FoodItem> = new EventEmitter();
 
+  displayedColumns: string[] = ["id", "name", "price", "calories"];
+  dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource([]);
+
   ngOnInit() {}
 
   ngOnChanges(changes: SimpleChanges) {
     console.log(changes.food.currentValue);
     this.dataSource = new MatTableDataSource(changes.food.currentValue);
   }
-
-  displayedColumns: string[] = ["id", "name", "price", "calories"];
-  dataSource: MatTableDataSource<FoodItem> = new MatTableDataSource([]);
 
   applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
