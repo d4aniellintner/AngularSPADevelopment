@@ -43,7 +43,7 @@ export class CreatingObservableComponent implements OnInit {
 
     this.result$.subscribe((
       data: number //onNext
-    ) => console.log("useObsCreate: ", data));
+    ) => console.log("current number: ", data));
     this.errHandler; //onErr
     this.complete; //onComplete
   }
