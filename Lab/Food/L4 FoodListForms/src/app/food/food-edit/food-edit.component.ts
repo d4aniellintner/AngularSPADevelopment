@@ -7,7 +7,7 @@ import {
   SimpleChanges
 } from "@angular/core";
 import { FoodItem } from "src/app/shared/foodItem";
-import { FormBuilder, FormGroup } from "@angular/forms";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 
 @Component({
   selector: "app-food-edit",
@@ -18,7 +18,7 @@ export class FoodEditComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       id: 0,
-      name: "",
+      name: ["", Validators.required],
       price: 0,
       calories: 0
     });

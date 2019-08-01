@@ -7,6 +7,14 @@
       <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="name" />
       </mat-form-field>
+      <em
+        *ngIf="
+          form.controls['name'].touched &&
+          form.controls['name'].errors != undefined
+        "
+      >
+        Name is required
+      </em>
       <mat-form-field>
         <input
           matInput
