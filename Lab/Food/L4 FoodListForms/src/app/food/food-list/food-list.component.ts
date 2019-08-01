@@ -45,6 +45,10 @@ export class FoodListComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
+  addFood() {
+    this.editSelected.emit({ id: 0, name: "", price: 0, calories: 0 });
+  }
+
   selectFood(p: FoodItem) {
     this.editSelected.emit(p);
   }
