@@ -23,6 +23,7 @@ export class FoodContainerComponent implements OnInit {
 
   deleteFood(f: FoodItem) {
     console.log("deleteing ", f);
+    this.food = this.food.filter(item => item.id != f.id);
   }
 
   foodSaved(f: FoodItem) {
