@@ -19,7 +19,7 @@ export class FoodEditComponent implements OnInit {
     this.form = this.fb.group({
       id: 0,
       name: ["", Validators.required],
-      price: 0,
+      price: [0, Validators.min(1)],
       calories: 0
     });
   }

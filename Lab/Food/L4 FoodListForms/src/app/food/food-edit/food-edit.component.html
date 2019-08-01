@@ -23,6 +23,14 @@
           formControlName="price"
         />
       </mat-form-field>
+      <em
+        *ngIf="
+          form.controls['price'].touched &&
+          form.controls['price'].errors != undefined
+        "
+      >
+        Price must be greater than 1€
+      </em>
       <mat-form-field>
         <input
           matInput
