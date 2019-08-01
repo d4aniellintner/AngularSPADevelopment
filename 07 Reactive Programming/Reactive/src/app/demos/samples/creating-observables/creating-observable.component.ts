@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Subscription, Observable, from, of } from "rxjs";
 import { map, filter } from "rxjs/operators";
+import * as $ from "jquery";
 
 @Component({
   selector: "app-simple-observable",
@@ -71,14 +72,17 @@ export class CreatingObservableComponent implements OnInit {
   // Wraps an Object that uses Callbacks
   wrapXMLHttpRequest(): Observable<any> {
     return new Observable(observer => {
+      //Original Code
       let xhr = new XMLHttpRequest();
 
       xhr.addEventListener("load", () => {
         if (xhr.status === 200) {
           let data = JSON.parse(xhr.responseText);
+          //Hat geklappt
           observer.next(data);
           observer.complete();
         } else {
+          //Err Handling
           observer.error(xhr.statusText);
         }
       });
@@ -96,25 +100,10 @@ export class CreatingObservableComponent implements OnInit {
     });
   }
 
-  //Create a mock promise
-  mockPromise(succeed: boolean): Promise<number[]> {
-    return new Promise<number[]>((resolve, reject) => {
-      setTimeout(() => {
-        console.log("Async Task Complete");
-        if (succeed) {
-          resolve(this.numbers);
-        } else {
-          reject("Outcome: Promise rejected");
-        }
-      }, 1000);
-    });
-  }
-
-  //Use the mock Promise
+  //Wrapping a Promise
   usePromiseToObs() {
-    from(this.mockPromise(true)).subscribe(data =>
-      console.log("usePromiseToObs:", data)
-    );
+    let url = "https://jsonplaceholder.typicode.com/todos";
+    from($.ajax(url)).subscribe(data => console.log("data from jquery", data));
   }
 
   useOperator() {
