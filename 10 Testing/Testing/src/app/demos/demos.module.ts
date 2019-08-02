@@ -51,7 +51,10 @@ const demoRoutes: Routes = [
     FormsModule,
     RouterModule.forChild(demoRoutes),
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    MarkdownModule.forRoot({
+      loader: HttpClient
+    })
   ],
   providers: [DemoService]
 })
