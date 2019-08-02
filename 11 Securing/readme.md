@@ -17,6 +17,12 @@
     },
 ```
 
+Get Chrome to trust self signed localhost:
+
+```
+chrome://flags/#allow-insecure-localhost
+```
+
 ## Auth Bascis
 
 [JSON Web Tokens - Jwt](https://jwt.io/)
