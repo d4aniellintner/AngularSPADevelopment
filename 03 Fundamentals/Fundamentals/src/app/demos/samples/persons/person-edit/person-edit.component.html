@@ -23,23 +23,19 @@
         [disabled]="!editMode"
       />
     </mat-form-field>
-    <div fxLayout="row">
-      <label>Gender</label>
-      <input
-        type="radio"
-        value="male"
-        name="gender"
+    <div fxLayout="row" fxLayoutGap="16px">
+      <label>Gender:</label>
+      <mat-radio-group
+        aria-label="Select an gender"
         [(ngModel)]="person.gender"
-      />
-      Male
-      <input
-        type="radio"
-        value="female"
-        name="gender"
-        [(ngModel)]="person.gender"
-      />
-      Female
+        fxLayoutGap="16px"
+      >
+        <mat-radio-button value="male">Male</mat-radio-button>
+        <mat-radio-button value="female">Female</mat-radio-button>
+      </mat-radio-group>
     </div>
-    <button mat-raised-button (click)="doSave()">Save</button>
   </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-raised-button (click)="doSave()">Save</button>
+  </mat-card-actions>
 </mat-card>

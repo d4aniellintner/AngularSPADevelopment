@@ -21,6 +21,6 @@ export class PersonService {
   ];
 
   getPersons(): Observable<Person[]> {
-    return of(this.data).pipe(delay(2000));
+    return of(this.data).pipe(delay(1000));
   }
 }

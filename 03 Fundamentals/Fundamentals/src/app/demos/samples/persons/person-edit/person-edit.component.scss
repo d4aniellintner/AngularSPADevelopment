@@ -1,3 +1,5 @@
-a{
-    cursor: pointer;   
+@import "stylevars.scss";
+
+mat-card {
+  margin-top: $smallGap;
 }
