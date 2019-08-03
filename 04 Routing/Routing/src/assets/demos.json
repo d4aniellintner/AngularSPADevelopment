@@ -5,6 +5,11 @@
     "component": "RoutingBasicsComponent"
   },
   {
+    "url": "parammap",
+    "title": "paramMap Observable",
+    "component": "ParamMapComponent"
+  },
+  {
     "url": "childroutes",
     "title": "Child Routes",
     "component": "ChildRoutesComponent"

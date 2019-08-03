@@ -12,6 +12,7 @@ import { PreloadComponent } from "./samples/preload/preload.component";
 import { RouteGuardsComponent } from "./samples/route-guards/route-guards.component";
 import { RoutingBasicsComponent } from "./samples/routing-basics/routing-basics.component";
 import { SecondaryRoutesComponent } from "./samples/secondary-routes/secondary-routes.component";
+import { ParamMapComponent } from "./samples/param-map/param-map.component";
 
 const demoRoutes: Routes = [
   {
@@ -19,6 +20,7 @@ const demoRoutes: Routes = [
     component: DemoContainerComponent,
     children: [
       { path: "routingbasics", component: RoutingBasicsComponent },
+      { path: "parammap", component: ParamMapComponent },
       { path: "childroutes", component: ChildRoutesComponent },
       { path: "secondary", component: SecondaryRoutesComponent },
       { path: "routeguards", component: RouteGuardsComponent },
@@ -34,7 +36,8 @@ const demoRoutes: Routes = [
     ChildRoutesComponent,
     SecondaryRoutesComponent,
     RouteGuardsComponent,
-    PreloadComponent
+    PreloadComponent,
+    ParamMapComponent
   ],
   imports: [
     CommonModule,
