@@ -8,7 +8,7 @@ import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.co
 import { EditorComponent } from "./shared/editor/editor.component";
 import { UploaderComponent } from "./shared/uploader/uploader.component";
 import { AdminComponent } from "./admin/admin.component";
-import { RouteGuard } from "./shared/auth/route.guard";
+import { RouteGuard } from "./route.guard.service";
 
 const routes: Routes = [
   {

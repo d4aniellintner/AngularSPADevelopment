@@ -10,6 +10,7 @@
         mat-raised-button
         *ngFor="let lnk of links"
         [routerLink]="['./' + lnk.id]"
+        [queryParams]="{ readonly: lnk.readonly }"
       >
         {{ lnk.label }}
       </a>

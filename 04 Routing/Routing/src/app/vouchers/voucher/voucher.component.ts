@@ -23,10 +23,8 @@ export class VoucherComponent implements OnInit {
   ngOnInit() {
     //Change comments to see the diffenent options for processing route data
     this.readRoutesUsingSnapshot();
-    // this.readRoutesUsingParamMap();
-    //this.readRoutesObs();
-    //this.readResolverObs();
     //this.useResolver();
+    //this.readResolverObs();
   }
 
   readRoutesUsingSnapshot() {
@@ -49,29 +47,6 @@ export class VoucherComponent implements OnInit {
     if (this.fragments != undefined) {
       console.log(`Section to navigate to: ${this.fragments}`);
     }
-  }
-
-  readRoutesUsingParamMap() {
-    // https://stackoverflow.com/questions/47809357/angular-4-5-route-parammap-vs-
-    //https://medium.com/better-programming/angular-6-url-parameters-860db789db85
-  }
-
-  //Deprecated ng4+
-  readRoutesObs() {
-    this.route.params.subscribe(params => {
-      this.id = params["id"];
-      this.vs.getVoucher(this.id).subscribe(data => {
-        this.voucher = data;
-        this.setDetail(this.voucher);
-      });
-    });
-
-    this.route.queryParams.subscribe(qps => {
-      this.readonly = qps["readonly"];
-      console.log(`Page is readonly: ${this.readonly}`);
-    });
-
-    this.route.fragment.subscribe(fg => console.log(fg));
   }
 
   useResolver() {

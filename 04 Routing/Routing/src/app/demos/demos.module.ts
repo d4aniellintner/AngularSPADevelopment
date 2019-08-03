@@ -24,7 +24,7 @@ const demoRoutes: Routes = [
       {
         path: "parammap",
         component: ParamMapComponent,
-        children: [{ path: "parammap/:id", component: PmChildComponent }]
+        children: [{ path: ":id", component: PmChildComponent }]
       },
       { path: "childroutes", component: ChildRoutesComponent },
       { path: "secondary", component: SecondaryRoutesComponent },

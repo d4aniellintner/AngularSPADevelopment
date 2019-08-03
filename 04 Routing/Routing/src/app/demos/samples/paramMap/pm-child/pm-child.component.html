@@ -1,1 +1,11 @@
-<p>pm-child works!</p>
+<div>You passed id: {{ id }}</div>
+<div>
+  <mat-form-field>
+    <input
+      matInput
+      placeholder="Enter id"
+      [(ngModel)]="id"
+      [disabled]="readonly"
+    />
+  </mat-form-field>
+</div>
