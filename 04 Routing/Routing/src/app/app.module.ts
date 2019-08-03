@@ -19,8 +19,8 @@ import { RouteGuard } from "./route.guard.service";
 import { PageNotFoundComponent } from "./shared/page-not-found/page-not-found.component";
 import { EditorComponent } from "./shared/editor/editor.component";
 import { UploaderComponent } from "./shared/uploader/uploader.component";
-import { AdminComponent } from './admin/admin.component';
-
+import { AdminComponent } from "./admin/admin.component";
+import { CKEditorModule } from "ngx-ckeditor";
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +41,8 @@ import { AdminComponent } from './admin/admin.component';
     HttpClientModule,
     MaterialModule,
     SharedModule,
-    FormsModule
+    FormsModule,
+    CKEditorModule
   ],
   providers: [VouchersService, RouteGuard, VoucherResolver],
   bootstrap: [AppComponent]
