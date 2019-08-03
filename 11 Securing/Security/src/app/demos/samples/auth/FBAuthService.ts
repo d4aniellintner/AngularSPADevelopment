@@ -8,17 +8,22 @@ export class FBAuthService {
   constructor(private fireAuth: AngularFireAuth) {
     this.onUserChanged();
   }
+
   private Token: BehaviorSubject<string> = new BehaviorSubject<string>("");
+
   private fbUser: firebase.User = null;
   public User: BehaviorSubject<firebase.User> = new BehaviorSubject(null);
+
   private onUserChanged() {
     this.fireAuth.auth.onAuthStateChanged(user => {
       this.setUserToken(user);
     });
   }
+
   private setUserToken(user) {
     this.fbUser = user;
     this.User.next(user);
+
     if (user != null) {
       this.fbUser.getIdToken().then(token => {
         this.setToken(token);
