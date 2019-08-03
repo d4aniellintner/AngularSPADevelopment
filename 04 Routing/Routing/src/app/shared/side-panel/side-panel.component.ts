@@ -25,6 +25,6 @@ export class SidePanelComponent implements OnInit {
   }
 
   showUpload() {
-    this.router.navigate(["", { outlets: { sidebarOutlet: "upload" } }]);
+    this.router.navigate(["", { outlets: { sidebarOutlet: "showuploader" } }]);
   }
 }

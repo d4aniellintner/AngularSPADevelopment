@@ -7,16 +7,19 @@
   <mat-card-content fxLayout="column">
     <button
       mat-raised-button
-      [routerLink]="['', { outlets: { sidebaroutlet: 'showeditor' } }]"
+      [routerLink]="['', { outlets: { sidebarOutlet: 'showeditor' } }]"
     >
       Show Editor
     </button>
 
+    <button mat-raised-button (click)="programaticAuxRoute()">
+      Show Uploader
+    </button>
     <button
       mat-raised-button
-      [routerLink]="['', { outlets: { sidebaroutlet: 'showuploader' } }]"
+      [routerLink]="['', { outlets: { sidebarOutlet: null } }]"
     >
-      Show Uploader
+      Clear Auxilary Route
     </button>
   </mat-card-content>
 </mat-card>

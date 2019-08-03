@@ -33,11 +33,11 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [RouteGuard]
   },
-  { path: "showeditor", component: EditorComponent, outlet: "sidebaroutlet" },
+  { path: "showeditor", component: EditorComponent, outlet: "sidebarOutlet" },
   {
     path: "showuploader",
     component: UploaderComponent,
-    outlet: "sidebaroutlet"
+    outlet: "sidebarOutlet"
   },
   {
     path: "wotschers",
