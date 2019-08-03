@@ -232,12 +232,6 @@ export class TypesComponent implements OnInit {
     let arrNbr = [8, 4, 100, -5, 20];
     let [first, second, third] = arrNbr;
     console.log(third, second, first); // output: 100, 4, 8
-
-    let myArray = [1, ["hello"], true],
-      [a, b, c] = myArray;
-
-    // output: 1, ['hello']
-    console.log(a, b);
   }
 
   arrayHelpers() {
@@ -318,6 +312,17 @@ export class TypesComponent implements OnInit {
     ); //same as above
 
     console.log("launches so far: ", launches);
+
+    let food = [
+      { id: 1, name: "Butter Chicken", price: 9, calories: 1200 },
+      { id: 2, name: "Curry Wurst", price: 2.7, calories: 730 },
+      { id: 3, name: "Blini with Salmon", price: 8.3, calories: 600 }
+    ];
+
+    let nextId =
+      food.reduce((acc, f) => (acc = acc > f.id ? acc : f.id), 0) + 1;
+
+    console.log("next id would be " + nextId);
 
     //splice -> manipulate arrays
 
