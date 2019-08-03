@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { MatDialog } from "@angular/material";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-side-panel",
@@ -7,17 +7,22 @@ import { MatDialog } from "@angular/material";
   styleUrls: ["./side-panel.component.scss"]
 })
 export class SidePanelComponent implements OnInit {
-  constructor(public dialog: MatDialog) {}
+  constructor(private router: Router) {}
+
+  editorDisplayed: boolean = false;
 
   ngOnInit() {}
 
-  openDialog(): void {
-    // let dialogRef = this.dialog.open(CalculatorComponent, {
-    //   width: "40vw",
-    //   data: { name: "Customer", amount: this.amount }
-    // });
-    // dialogRef.afterClosed().subscribe(result => {
-    //   console.log("Dialog was close with result: ", result);
-    // });
+  showUpload() {
+    // this.router.navigate(["", { outlets: { sidebarOutlet: "showuploader" } }]);
+  }
+
+  toggleEditor() {
+    // this.editorDisplayed = !this.editorDisplayed;
+    // if (this.editorDisplayed) {
+    //   this.router.navigate(["", { outlets: { sidebarOutlet: "showeditor" } }]);
+    // } else {
+    //   this.router.navigate(["", { outlets: { sidebarOutlet: null } }]);
+    // }
   }
 }
