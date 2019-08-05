@@ -51,17 +51,9 @@ export class ReactiveValidationComponent implements OnInit {
       email: [
         this.person.email,
         [Validators.required, Validators.email],
-        [this.mailExistsValidatior]
+        [this.mailExistsValidatior],
+        { updateOn: "blur" }
       ],
-      // email: [
-      //   this.person.email,
-      //   {
-      //     asyncValidators: [
-      //       this.mailExistsValidatior.validate.bind(this.mailExistsValidatior)
-      //     ],
-      //     updateOn: "blur"
-      //   }
-      // ],
       wealth: [this.person.wealth]
     });
   }
