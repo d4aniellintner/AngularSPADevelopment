@@ -6,10 +6,10 @@ import {
   ValidationErrors,
   Validators
 } from "@angular/forms";
-import { Observable } from "rxjs";
 import { emptyPerson, wealthOpts } from "../empty-person";
 import { Person } from "../person";
 import { PersonService } from "../person.service";
+import { asyncMailExistsValidator } from "./asyncMailExistsValidator";
 
 @Component({
   selector: "app-reactive-validation",
@@ -22,7 +22,11 @@ export class ReactiveValidationComponent implements OnInit {
 
   personForm: FormGroup;
 
-  constructor(private fb: FormBuilder, private ps: PersonService) {}
+  constructor(
+    private fb: FormBuilder,
+    private ps: PersonService,
+    private mailExistsValidatior: asyncMailExistsValidator
+  ) {}
 
   ngOnInit() {
     this.loadData();
@@ -47,8 +51,17 @@ export class ReactiveValidationComponent implements OnInit {
       email: [
         this.person.email,
         [Validators.required, Validators.email],
-        [this.validateMailNotRegistered]
+        [this.mailExistsValidatior]
       ],
+      // email: [
+      //   this.person.email,
+      //   {
+      //     asyncValidators: [
+      //       this.mailExistsValidatior.validate.bind(this.mailExistsValidatior)
+      //     ],
+      //     updateOn: "blur"
+      //   }
+      // ],
       wealth: [this.person.wealth]
     });
   }
@@ -81,32 +94,6 @@ export class ReactiveValidationComponent implements OnInit {
         result = true;
       }
     }
-    return result;
-  }
-
-  //Sample for async Validator
-  validateMailNotRegistered(
-    control: FormControl
-  ): Promise<any> | Observable<any> {
-    //Mocking Http Call to service to check weather user exists
-
-    // return new Observable(observer => {
-    //   if (control.value === "alexander.pajer@integrations.at") {
-    //     observer.next({ mailexists: true });
-    //   } else {
-    //     observer.next(null);
-    //   }
-    // });
-
-    const result = new Promise<any>((resolve, reject) => {
-      setTimeout(() => {
-        if (control.value === "alexander.pajer@integrations.at") {
-          resolve({ mailexists: true });
-        } else {
-          resolve(null);
-        }
-      }, 1500);
-    });
     return result;
   }
 

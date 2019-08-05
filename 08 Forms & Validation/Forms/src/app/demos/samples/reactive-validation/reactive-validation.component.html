@@ -14,24 +14,24 @@
     >
       <mat-form-field>
         <input matInput type="text" placeholder="Name" formControlName="name" />
-        <em
+        <mat-error
           *ngIf="
             personForm.controls['name'].errors != undefined &&
             personForm.controls['name'].errors['nameError']
           "
         >
           The Name Hugo is not allowed
-        </em>
-        <em *ngIf="violatesMinLenght()">
+        </mat-error>
+        <mat-error *ngIf="violatesMinLenght()">
           Name is required (minimum 4 characters).
-        </em>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="number" placeholder="Age" formControlName="age" />
-        <em *ngIf="personForm.controls['age'].errors != undefined">
+        <mat-error *ngIf="personForm.controls['age'].errors != undefined">
           Person must be between 18 and 99
-        </em>
+        </mat-error>
       </mat-form-field>
 
       <mat-form-field>
@@ -41,12 +41,12 @@
           placeholder="Email"
           formControlName="email"
         />
-        <em
+        <mat-error
           *ngIf="
             personForm.controls['email'].errors != undefined &&
             personForm.controls['email'].errors['mailexists']
           "
-          >mail already taken</em
+          >Sorry this mail is already registered</mat-error
         >
       </mat-form-field>
 

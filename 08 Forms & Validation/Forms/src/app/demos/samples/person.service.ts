@@ -24,4 +24,10 @@ export class PersonService {
     console.log("ngForm:", result);
     console.log("value:", result.value);
   }
+
+  checkMailExists(email: string): Observable<boolean> {
+    //Mocking Http Call to service to check weather user exists
+    let exists = email == "alexander.pajer@integrations.at";
+    return of(exists).pipe(delay(500));
+  }
 }
