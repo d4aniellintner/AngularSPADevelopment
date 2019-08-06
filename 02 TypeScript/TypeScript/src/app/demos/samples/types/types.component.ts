@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core"; //ES 6 module import
 import * as $ from "jquery"; //Non ES6 Moduel import
 import * as moment from "moment"; //Non ES6 Moduel import
 import { Voucher } from "../model";
+import "./date-extensions";
 
 @Component({
   selector: "app-types",
@@ -203,6 +204,12 @@ export class TypesComponent implements OnInit {
     //using jQuery
     let myArray = ["Angular", "React", "SPFx"];
     console.log("myArray is an Array: ", $.isArray(myArray));
+  }
+
+  usePrototypes() {
+    let dt = new Date();
+    let weekLater = dt.addDays(7);
+    console.log(`${dt} is one week before ${weekLater}`);
   }
 
   introArrays() {
