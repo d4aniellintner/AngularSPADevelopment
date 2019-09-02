@@ -12,7 +12,7 @@ export class FormArrayComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.form = this.fb.group({
       name: "Giro",
-      skills: this.fb.array([])
+      skills: this.fb.array([{ skillname: "Hunting", years: 9 }])
     });
   }
 
@@ -26,5 +26,9 @@ export class FormArrayComponent implements OnInit {
         years: ""
       })
     );
+  }
+
+  saveForm() {
+    console.log("saving ...", this.form.value);
   }
 }
