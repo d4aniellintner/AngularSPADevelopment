@@ -18,7 +18,7 @@
 
         <div
           formArrayName="skills"
-          *ngFor="let skill of form.get('skills')?.value; let i = index"
+          *ngFor="let skill of form.get('skills')?.controls; let i = index"
         >
           <ng-container [formGroupName]="i">
             <mat-form-field>
