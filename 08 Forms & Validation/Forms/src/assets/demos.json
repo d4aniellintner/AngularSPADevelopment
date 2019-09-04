@@ -33,5 +33,10 @@
     "url": "formarray",
     "title": "Form Array",
     "component": "FormArrayComponent"
+  },
+  {
+    "url": "cascade",
+    "title": "Cascade",
+    "component": "ReactiveCascadeComponent"
   }
 ]
