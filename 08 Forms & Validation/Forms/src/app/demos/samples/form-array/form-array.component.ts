@@ -7,20 +7,22 @@ import { FormGroup, FormBuilder, FormArray } from "@angular/forms";
   styleUrls: ["./form-array.component.scss"]
 })
 export class FormArrayComponent implements OnInit {
-  form: FormGroup;
+  public skillForm: FormGroup;
 
   constructor(private fb: FormBuilder) {
-    this.form = this.fb.group({
+    this.skillForm = this.fb.group({
       name: "Giro",
-      skills: this.fb.array([{ skillname: "Hunting", years: 9 }])
+      skillsGrp: this.fb.array([
+        this.fb.group({ skillname: "Hunting", years: 9 })
+      ])
     });
   }
 
   ngOnInit() {}
 
   addSkill() {
-    const skills = this.form.controls.skills as FormArray;
-    skills.push(
+    const skillsGrp = this.skillForm.controls["skillsGrp"] as FormArray;
+    skillsGrp.push(
       this.fb.group({
         skillname: "",
         years: ""
@@ -29,6 +31,6 @@ export class FormArrayComponent implements OnInit {
   }
 
   saveForm() {
-    console.log("saving ...", this.form.value);
+    console.log("saving ...", this.skillForm.value);
   }
 }
