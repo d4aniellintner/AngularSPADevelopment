@@ -16,21 +16,21 @@
       <div *ngIf="form.get('name').value">
         <h2>Skills</h2>
 
-        <div
-          formArrayName="skills"
-          *ngFor="let skill of form.get('skills')?.controls; let i = index"
-        >
-          <ng-container [formGroupName]="i">
+        <div formArrayName="skills">
+          <ng-container
+            *ngFor="let skill of skills.controls; let i = index"
+            [formGroupName]="i"
+          >
             <mat-form-field>
               <input
                 matInput
                 placeholder="Skill Name"
-                formControl="skillname"
+                formControlName="skillname"
               />
             </mat-form-field>
 
             <mat-form-field>
-              <input matInput placeholder="Years" formControl="years" />
+              <input matInput placeholder="Years" formControlName="years" />
             </mat-form-field>
           </ng-container>
         </div>
