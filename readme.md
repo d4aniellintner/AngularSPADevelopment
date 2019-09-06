@@ -12,12 +12,12 @@ Nach Abschluss dieses Seminars haben die Teilnehmer Kenntnisse zu folgenden Them
 - TypeScript Fundamentals
 - Angular Projektkonfiguration & CLI
 - Understanding Fundamentals & Completing Basic Tasks
+- Nesting Components
 - Routing & Modularity
 - Implementing a Responsive User Interface
 - Form Design & Validation
 - Implementing & Consuming Data Models and REST APIs
 - Introduction to Observables & Reactive Programming
-- Nesting Components
 - Managing State & Broadcasting Events
 - Testing & Securing the Application
 
@@ -77,6 +77,13 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Reusable Components using Local References & Content Projection
 - View Child, View Children
 
+## Nesting Components
+
+- Why Nesting
+- Databinding & Events with Nested Components
+- Container vs Presentational Components
+- Introduction to Angular Change Detection
+
 ## Routing & Modularity
 
 - Routing Basics
@@ -98,7 +105,7 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Angular Material Overview
 - Using Material Tables, Dialogs & Form Controls
 - Using Bootstrap JumpStart
-- Using 3rd Party Components (Charting, File Upload, Drag & Drop)
+- Using Angular CDK & 3rd Party Components (Charting, File Upload, Drag & Drop)
 
 ## Forms Design & Validation
 
@@ -130,13 +137,6 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Capturing Mouse & DOM Events as Observables
 - Subscribing to Routes & Params, Flex Layout API
 
-## Nesting Components
-
-- Why Nesting
-- Databinding & Events with Nested Components
-- Container vs Presentational Components
-- Introduction to Angular Change Detection
-
 ## Managing State & Sharing Events
 
 - What is State Management
@@ -153,7 +153,6 @@ Neue Themengebiete werden anhand von Folien und Demos erarbeitet. Am Ende der Mo
 - Test Setup & Mocking
 - Testing Angular Components, Services and Forms
 - In Short: End to End Testing
-
 
 ## Securing the Application using Token Based Auth
 
