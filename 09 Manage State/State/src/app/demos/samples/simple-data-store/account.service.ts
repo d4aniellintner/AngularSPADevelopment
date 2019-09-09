@@ -12,31 +12,31 @@ export class AccountsService {
 
   getAccounts(): Observable<BalanceAccount[]> {
     return this.httpClient.get<BalanceAccount[]>(
-      environment.apiUrl + "api/accounts"
+      environment.apiUrl + "accounts"
     );
   }
 
   getAccount(id: number): Observable<BalanceAccount> {
     return this.httpClient.get<BalanceAccount>(
-      environment.apiUrl + "api/accounts/" + id
+      environment.apiUrl + "accounts/" + id
     );
   }
 
   insertAccount(acct: BalanceAccount): void {
     this.httpClient
-      .post(environment.apiUrl + "api/accounts", acct)
+      .post(environment.apiUrl + "accounts", acct)
       .subscribe(() => console.log("acct inserted"));
   }
 
   updateAccount(acct: BalanceAccount) {
     this.httpClient
-      .put(environment.apiUrl + "api/accounts", acct)
+      .put(environment.apiUrl + "accounts", acct)
       .subscribe(() => console.log("acct updated"));
   }
 
   deleteAccount(acct: BalanceAccount): void {
     this.httpClient
-      .delete(environment.apiUrl + "api/accounts/" + acct.ID)
+      .delete(environment.apiUrl + "accounts/" + acct.ID)
       .subscribe(() => console.log("acct deleted"));
   }
 }
