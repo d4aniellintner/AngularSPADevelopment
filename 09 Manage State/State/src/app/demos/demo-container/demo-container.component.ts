@@ -3,7 +3,7 @@ import { Event, NavigationEnd, Router } from "@angular/router";
 import { filter, flatMap, map } from "rxjs/operators";
 import { Observable } from "rxjs";
 import { MenuService } from "src/app/shared/menu/menu.service";
-import { DemoItem } from "../demo-item";
+import { DemoItem } from "../demo-item.model";
 import { DemoService } from "../demo.service";
 import { environment } from "src/environments/environment";
 import { EventBusService } from "../samples/evt-bus/event-bus.service";
