@@ -2,17 +2,29 @@
   {
     "url": "stateful",
     "title": "Stateful Service",
-    "component": "StatefulComponent"
+    "component": "StatefulComponent",
+    "visible": true,
+    "sortOrder": 0
   },
   {
     "url": "simpleds",
     "title": "Simple DataService",
-    "component": "SimpleDataStoreComponent"
+    "component": "SimpleDataStoreComponent",
+    "visible": true,
+    "sortOrder": 0
   },
-  { "url": "evtbus", "title": "Event Bus", "component": "EvtBusComponent" },
+  {
+    "url": "evtbus",
+    "title": "Event Bus",
+    "component": "EvtBusComponent",
+    "visible": true,
+    "sortOrder": 0
+  },
   {
     "url": "ngrx",
     "title": "Simple NgRx",
-    "component": "SimpleCalcComponent"
+    "component": "SimpleCalcComponent",
+    "visible": true,
+    "sortOrder": 0
   }
 ]
