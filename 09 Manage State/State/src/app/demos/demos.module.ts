@@ -3,21 +3,23 @@ import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { RouterModule, Routes } from "@angular/router";
-import { EffectsModule } from "@ngrx/effects";
-import { StoreModule } from "@ngrx/store";
 import { MarkdownModule } from "ngx-markdown";
 import { MaterialModule } from "../material.module";
 import { DemoContainerComponent } from "./demo-container/demo-container.component";
 import { DemoService } from "./demo.service";
-import { MarkdownEditorComponent } from "./markdown-editor/markdown-editor.component";
-import { DemoAdminComponent } from "./samples/demo-admin-ngrx/demo-admin.component";
-import { EvtBusComponent } from "./samples/evt-bus/evt-bus.component";
-import { KpiBarComponent } from "./samples/simple-data-store/kpi-bar/kpi-bar.component";
-import { SimpleDataStoreComponent } from "./samples/simple-data-store/simple-data-store.component";
-import { VouchersListComponent } from "./samples/simple-data-store/voucher-list/vouchers-list.component";
 import { StatefulComponent } from "./samples/stateful/stateful.component";
+import { SimpleDataStoreComponent } from "./samples/simple-data-store/simple-data-store.component";
+import { EvtBusComponent } from "./samples/evt-bus/evt-bus.component";
+import { SimpleCalcComponent } from "./samples/ngrx/simple.calc.component";
 import { VouchersService } from "./samples/voucher.service";
-import { DemoRowComponent } from "./samples/demo-admin-ngrx/demo-row/demo-row.component";
+import { StoreModule } from "@ngrx/store";
+import { reducers } from "./samples/ngrx/reducers";
+import { EffectsModule } from "@ngrx/effects";
+import { CurrencyEffects } from "./samples/ngrx/effects/currencyEffects";
+import { FixerService } from "./samples/ngrx/fixer.service";
+import { VouchersListComponent } from "./samples/simple-data-store/voucher-list/vouchers-list.component";
+import { KpiBarComponent } from "./samples/simple-data-store/kpi-bar/kpi-bar.component";
+import { MarkdownEditorComponent } from "./markdown-editor/markdown-editor.component";
 
 const demoRoutes: Routes = [
   {
@@ -28,7 +30,7 @@ const demoRoutes: Routes = [
       { path: "stateful", component: StatefulComponent },
       { path: "simpleds", component: SimpleDataStoreComponent },
       { path: "evtbus", component: EvtBusComponent },
-      { path: "ngrx", component: DemoAdminComponent }
+      { path: "ngrx", component: SimpleCalcComponent }
     ]
   }
 ];
@@ -39,11 +41,10 @@ const demoRoutes: Routes = [
     StatefulComponent,
     SimpleDataStoreComponent,
     EvtBusComponent,
+    SimpleCalcComponent,
     VouchersListComponent,
     KpiBarComponent,
-    MarkdownEditorComponent,
-    DemoAdminComponent,
-    DemoRowComponent
+    MarkdownEditorComponent
   ],
   imports: [
     CommonModule,
@@ -52,12 +53,12 @@ const demoRoutes: Routes = [
     RouterModule.forChild(demoRoutes),
     MaterialModule,
     HttpClientModule,
-    // StoreModule.forRoot(reducers),
-    // EffectsModule.forRoot([CurrencyEffects]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([CurrencyEffects]),
     MarkdownModule.forRoot({
       loader: HttpClient
     })
   ],
-  providers: [DemoService, VouchersService]
+  providers: [DemoService, VouchersService, FixerService]
 })
 export class DemosModule {}
