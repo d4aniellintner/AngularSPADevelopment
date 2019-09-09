@@ -19,12 +19,10 @@ export class StatefulVoucherService {
   );
 
   private initData() {
-    this.httpClient
-      .get<Voucher[]>(environment.apiUrl + "api/vouchers")
-      .subscribe(data => {
-        this.vouchersArray = data;
-        this.vouchers.next(this.vouchersArray);
-      });
+    this.httpClient.get<Voucher[]>("assets/vouchers.json").subscribe(data => {
+      this.vouchersArray = data;
+      this.vouchers.next(this.vouchersArray);
+    });
   }
 
   addLateVoucher() {
