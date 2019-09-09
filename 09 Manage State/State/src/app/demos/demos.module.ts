@@ -10,16 +10,13 @@ import { DemoService } from "./demo.service";
 import { StatefulComponent } from "./samples/stateful/stateful.component";
 import { SimpleDataStoreComponent } from "./samples/simple-data-store/simple-data-store.component";
 import { EvtBusComponent } from "./samples/evt-bus/evt-bus.component";
-import { SimpleCalcComponent } from "./samples/ngrx/simple.calc.component";
 import { VouchersService } from "./samples/voucher.service";
 import { StoreModule } from "@ngrx/store";
-import { reducers } from "./samples/ngrx/reducers";
 import { EffectsModule } from "@ngrx/effects";
-import { CurrencyEffects } from "./samples/ngrx/effects/currencyEffects";
-import { FixerService } from "./samples/ngrx/fixer.service";
 import { VouchersListComponent } from "./samples/simple-data-store/voucher-list/vouchers-list.component";
 import { KpiBarComponent } from "./samples/simple-data-store/kpi-bar/kpi-bar.component";
 import { MarkdownEditorComponent } from "./markdown-editor/markdown-editor.component";
+import { NgrxVouchersComponent } from "./samples/ngrx-vouchers/ngrx-vouchers.component";
 
 const demoRoutes: Routes = [
   {
@@ -30,7 +27,7 @@ const demoRoutes: Routes = [
       { path: "stateful", component: StatefulComponent },
       { path: "simpleds", component: SimpleDataStoreComponent },
       { path: "evtbus", component: EvtBusComponent },
-      { path: "ngrx", component: SimpleCalcComponent }
+      { path: "ngrx", component: NgrxVouchersComponent }
     ]
   }
 ];
@@ -41,10 +38,10 @@ const demoRoutes: Routes = [
     StatefulComponent,
     SimpleDataStoreComponent,
     EvtBusComponent,
-    SimpleCalcComponent,
     VouchersListComponent,
     KpiBarComponent,
-    MarkdownEditorComponent
+    MarkdownEditorComponent,
+    NgrxVouchersComponent
   ],
   imports: [
     CommonModule,
@@ -53,12 +50,12 @@ const demoRoutes: Routes = [
     RouterModule.forChild(demoRoutes),
     MaterialModule,
     HttpClientModule,
-    StoreModule.forRoot(reducers),
-    EffectsModule.forRoot([CurrencyEffects]),
+    // StoreModule.forRoot(reducers),
+    // EffectsModule.forRoot([CurrencyEffects]),
     MarkdownModule.forRoot({
       loader: HttpClient
     })
   ],
-  providers: [DemoService, VouchersService, FixerService]
+  providers: [DemoService, VouchersService]
 })
 export class DemosModule {}
