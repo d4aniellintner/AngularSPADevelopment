@@ -15,9 +15,11 @@ import { StoreModule } from "@ngrx/store";
 import { VouchersListComponent } from "./samples/simple-data-store/voucher-list/vouchers-list.component";
 import { KpiBarComponent } from "./samples/simple-data-store/kpi-bar/kpi-bar.component";
 import { MarkdownEditorComponent } from "./markdown-editor/markdown-editor.component";
-import { NgrxVouchersComponent } from "./samples/ngrx-vouchers/ngrx-vouchers.component";
+import { NgrxVouchersComponent } from "./samples/ngrx-vouchers/voucher-list/ngrx-vouchers.component";
 import { demosFeatureKey } from "./store/reducers/demos.reducer";
 import { reducers } from "../store/reducers";
+import { VoucherEditComponent } from "./samples/ngrx-vouchers/voucher-edit/voucher-edit.component";
+import { VouchesContainerComponent } from "./samples/ngrx-vouchers/vouches-container/vouches-container.component";
 
 const demoRoutes: Routes = [
   {
@@ -28,7 +30,7 @@ const demoRoutes: Routes = [
       { path: "stateful", component: StatefulComponent },
       { path: "simpleds", component: SimpleDataStoreComponent },
       { path: "evtbus", component: EvtBusComponent },
-      { path: "ngrx", component: NgrxVouchersComponent }
+      { path: "ngrx", component: VouchesContainerComponent }
     ]
   }
 ];
@@ -42,7 +44,9 @@ const demoRoutes: Routes = [
     VouchersListComponent,
     KpiBarComponent,
     MarkdownEditorComponent,
-    NgrxVouchersComponent
+    NgrxVouchersComponent,
+    VoucherEditComponent,
+    VouchesContainerComponent
   ],
   imports: [
     CommonModule,

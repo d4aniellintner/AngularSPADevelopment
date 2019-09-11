@@ -39,8 +39,8 @@ export const getAllVouchers = createSelector(
 export function reducer(state = initialState, action: VouchersActions) {
   switch (action.type) {
     case VouchersActionTypes.AddVoucher:
-      state.vouchers.push(action.payload);
-      return { ...state };
+      let arr = [...state.vouchers, action.payload];
+      return { ...state, vouchers: arr };
     default:
       return state;
   }

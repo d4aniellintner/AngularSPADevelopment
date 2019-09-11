@@ -1,12 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { MatTableDataSource } from "@angular/material";
 import { Store } from "@ngrx/store";
-import { tap } from "rxjs/operators";
 import {
-  getAllVouchers,
-  getDemosState
-} from "../../store/reducers/demos.reducer";
-import { Voucher } from "../model";
+  DemosState,
+  getAllVouchers
+} from "../../../store/reducers/demos.reducer";
+import { Voucher } from "../../model";
 
 @Component({
   selector: "app-ngrx-vouchers",
@@ -17,7 +16,7 @@ export class NgrxVouchersComponent implements OnInit {
   dataSource: MatTableDataSource<Voucher>;
   displayedColumns = ["ID", "Text", "Date", "Amount"];
 
-  constructor(private store: Store<{ vouchers: Voucher[] }>) {}
+  constructor(private store: Store<DemosState>) {}
 
   ngOnInit() {
     this.store.select(getAllVouchers).subscribe(data => {
