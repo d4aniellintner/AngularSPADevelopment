@@ -12,11 +12,12 @@ import { SimpleDataStoreComponent } from "./samples/simple-data-store/simple-dat
 import { EvtBusComponent } from "./samples/evt-bus/evt-bus.component";
 import { VouchersService } from "./samples/voucher.service";
 import { StoreModule } from "@ngrx/store";
-import { EffectsModule } from "@ngrx/effects";
 import { VouchersListComponent } from "./samples/simple-data-store/voucher-list/vouchers-list.component";
 import { KpiBarComponent } from "./samples/simple-data-store/kpi-bar/kpi-bar.component";
 import { MarkdownEditorComponent } from "./markdown-editor/markdown-editor.component";
 import { NgrxVouchersComponent } from "./samples/ngrx-vouchers/ngrx-vouchers.component";
+import { demosFeatureKey } from "./store/reducers/demos.reducer";
+import { reducers } from "../store/reducers";
 
 const demoRoutes: Routes = [
   {
@@ -50,8 +51,7 @@ const demoRoutes: Routes = [
     RouterModule.forChild(demoRoutes),
     MaterialModule,
     HttpClientModule,
-    // StoreModule.forRoot(reducers),
-    // EffectsModule.forRoot([CurrencyEffects]),
+    StoreModule.forFeature(demosFeatureKey, reducers),
     MarkdownModule.forRoot({
       loader: HttpClient
     })
