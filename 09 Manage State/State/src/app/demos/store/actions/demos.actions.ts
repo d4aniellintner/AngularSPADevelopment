@@ -11,6 +11,7 @@ export class AddVoucher implements Action {
   constructor(public payload: Voucher) {}
 }
 
+//Not implemented in reducer - just here to demonstrate union type: VochersActions
 export class DeleteVoucher implements Action {
   readonly type = VouchersActionTypes.DeleteVoucher;
   constructor(public payload: Voucher) {}

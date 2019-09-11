@@ -9,7 +9,7 @@ import { environment } from "../../../environments/environment";
 import * as fromDemo from "src/app/demos/store/reducers/demos.reducer";
 
 export interface State {
-  demos: fromDemo.DemoState;
+  demos: fromDemo.DemosState;
 }
 
 export const reducers: ActionReducerMap<State> = {
