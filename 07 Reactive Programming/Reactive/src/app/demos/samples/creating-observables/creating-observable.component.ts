@@ -70,33 +70,26 @@ export class CreatingObservableComponent implements OnInit {
   }
 
   // Wraps an Object that uses Callbacks
-  wrapXMLHttpRequest(): Observable<any> {
+  getGeolocation$(): Observable<Position> {
     return new Observable(observer => {
-      //Original Code
-      let xhr = new XMLHttpRequest();
-
-      xhr.addEventListener("load", () => {
-        if (xhr.status === 200) {
-          let data = JSON.parse(xhr.responseText);
-          //Hat geklappt
-          observer.next(data);
+      navigator.geolocation.getCurrentPosition(
+        (pos: Position) => {
+          observer.next(pos);
           observer.complete();
-        } else {
-          //Err Handling
-          observer.error(xhr.statusText);
+        },
+        (err: PositionError) => {
+          observer.error(err);
         }
-      });
-
-      xhr.open("GET", this.url);
-      xhr.send();
+      );
     });
   }
 
   //Use the wrapped Callback
   wrappingCallbacks() {
-    this.wrapXMLHttpRequest().subscribe(data => {
-      console.log("wrappingCallbacks:", data);
-      this.result$ = data;
+    window.navigator.onLine;
+
+    this.getGeolocation$().subscribe(loc => {
+      console.log("current Geolocation:", loc);
     });
   }
 

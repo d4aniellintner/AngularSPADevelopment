@@ -21,6 +21,8 @@ import { DebouncedSearchComponent } from "./samples/operators/debounced-search/d
 import { VouchersService } from "./samples/voucher.service";
 import { MovieService } from "./samples/movie.service";
 import { SubjectsComponent } from "./samples/subjects/subjects.component";
+import { WhyObservablesComponent } from "./samples/whyObservables/why-observables.component";
+import { EmbedVideo } from "ngx-embed-video";
 
 const demoRoutes: Routes = [
   {
@@ -28,6 +30,7 @@ const demoRoutes: Routes = [
     component: DemoContainerComponent,
 
     children: [
+      { path: "whyrxjs", component: WhyObservablesComponent },
       { path: "subjects", component: SubjectsComponent },
       { path: "creating", component: CreatingObservableComponent },
       { path: "observablescurd", component: ObservableCrudComponent },
@@ -55,7 +58,8 @@ const demoRoutes: Routes = [
     DebouncedSearchComponent,
     SubsinkComponent,
     UsingStreamsComponent,
-    SubjectsComponent
+    SubjectsComponent,
+    WhyObservablesComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +70,8 @@ const demoRoutes: Routes = [
     HttpClientModule,
     MarkdownModule.forRoot({
       loader: HttpClient
-    })
+    }),
+    EmbedVideo.forRoot()
   ],
   providers: [DemoService, VouchersService, MovieService]
 })

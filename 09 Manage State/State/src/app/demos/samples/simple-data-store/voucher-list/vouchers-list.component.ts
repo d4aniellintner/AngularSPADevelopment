@@ -38,7 +38,6 @@ export class VouchersListComponent implements OnInit {
 
   editItem(v: Voucher) {
     console.log("Edit Row", v);
-    this.router.navigate(["/vouchers/" + v.ID]);
   }
 
   deleteVoucher(id: number) {

@@ -14,6 +14,7 @@ import { TemplateValidationComponent } from "./samples/template-validation/templ
 import { ReactiveValidationComponent } from "./samples/reactive-validation/reactive-validation.component";
 import { FormControlComponent } from "./samples/form-control/form-control.component";
 import { FormArrayComponent } from "./samples/form-array/form-array.component";
+import { ReactiveCascadeComponent } from "./samples/reactive-cascade/reactive-cascade.component";
 
 const demoRoutes: Routes = [
   {
@@ -27,7 +28,8 @@ const demoRoutes: Routes = [
       { path: "templatevalidation", component: TemplateValidationComponent },
       { path: "reactivevalidation", component: ReactiveValidationComponent },
       { path: "formcontrol", component: FormControlComponent },
-      { path: "formarray", component: FormArrayComponent }
+      { path: "formarray", component: FormArrayComponent },
+      { path: "cascade", component: ReactiveCascadeComponent }
     ]
   }
 ];
@@ -41,7 +43,8 @@ const demoRoutes: Routes = [
     TemplateValidationComponent,
     ReactiveValidationComponent,
     FormControlComponent,
-    FormArrayComponent
+    FormArrayComponent,
+    ReactiveCascadeComponent
   ],
   imports: [
     CommonModule,

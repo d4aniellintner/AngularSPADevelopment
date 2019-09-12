@@ -8,6 +8,8 @@ import { lateVoucher } from "../late-voucher";
 
 @Injectable({ providedIn: "root" })
 export class DataStoreService {
+  //Would not do this in real life - just do give you an idea how a store could work
+  //Too much code duplication and boilerplate
   constructor(private vs: VouchersService, private as: AccountsService) {
     this.initVouchers();
     this.initAccounts();

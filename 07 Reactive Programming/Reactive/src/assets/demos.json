@@ -1,5 +1,10 @@
 [
   {
+    "url": "whyrxjs",
+    "title": "Why RxJS",
+    "component": "WhyObservablesComponent"
+  },
+  {
     "url": "observablescurd",
     "title": "Observables CRUD",
     "component": "ObservableCrudComponent"

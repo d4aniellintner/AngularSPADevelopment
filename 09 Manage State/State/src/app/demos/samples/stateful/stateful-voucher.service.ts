@@ -20,7 +20,7 @@ export class StatefulVoucherService {
 
   private initData() {
     this.httpClient
-      .get<Voucher[]>(environment.apiUrl + "api/vouchers")
+      .get<Voucher[]>(`${environment.apiUrl}vouchers`)
       .subscribe(data => {
         this.vouchersArray = data;
         this.vouchers.next(this.vouchersArray);

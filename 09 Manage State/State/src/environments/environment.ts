@@ -3,7 +3,7 @@ export const environment = {
   authEnabled: false,
   title: "ngState",
   markdownPath: "/assets/markdown/",
-  apiUrl: "http://localhost:5000/",
+  apiUrl: "http://localhost:3000/",
   fixerAPIKey: "03325b5fecd5eef31244823328db00f9"
 };
 

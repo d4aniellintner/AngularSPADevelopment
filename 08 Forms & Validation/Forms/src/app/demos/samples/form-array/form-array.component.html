@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="saveForm()">
+<div [formGroup]="skillForm" (ngSubmit)="saveForm()">
   <mat-card>
     <mat-card-header>
       <mat-card-title>Skills Sheet</mat-card-title>
@@ -13,14 +13,17 @@
           placeholder="Enter Name:"
         />
       </mat-form-field>
-      <div *ngIf="form.get('name').value">
+      <div *ngIf="skillForm.get('name').value">
         <h2>Skills</h2>
+        <div
+          formArrayName="skillsGrp"
+          *ngFor="
+            let skill of skillForm.controls['skillsGrp'].controls;
+            let i = index
+          "
+        >
+          <div [formGroupName]="i" fxLayout="row" fxLayoutGap="10px">
 
-        <div formArrayName="skills">
-          <ng-container
-            *ngFor="let skill of skills.controls; let i = index"
-            [formGroupName]="i"
-          >
             <mat-form-field>
               <input
                 matInput
@@ -32,13 +35,13 @@
             <mat-form-field>
               <input matInput placeholder="Years" formControlName="years" />
             </mat-form-field>
-          </ng-container>
+          </div>
         </div>
       </div>
     </mat-card-content>
     <mat-card-actions align="end">
       <button mat-button (click)="addSkill()">Add Skill</button>
-      <button mat-button (click)="addSkill()">Save</button>
+      <button mat-button (click)="saveForm()">Save</button>
     </mat-card-actions>
   </mat-card>
-</form>
+</div>
