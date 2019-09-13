@@ -46,7 +46,7 @@
   },
   {
     "url": "streams",
-    "title": "Using Streams",
+    "title": "Async Pipe",
     "component": "UsingStreamsComponent"
   }
 ]

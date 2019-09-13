@@ -3,7 +3,11 @@ import { VouchersActionTypes, VouchersActions } from "../actions/demos.actions";
 import { Voucher } from "../../samples/model";
 import { createFeatureSelector, createSelector } from "@ngrx/store";
 
+//Feature Key
+
 export const demosFeatureKey = "demos";
+
+//State & Default
 
 export interface DemosState {
   vouchers: Voucher[];
@@ -18,9 +22,11 @@ export const initialState: DemosState = {
 };
 
 //Slices
+
 export const getVouchers = (state: DemosState) => state.vouchers;
 
 //Selectors
+
 export const getDemosFeature = createFeatureSelector<DemosFeatureState>(
   demosFeatureKey
 );
