@@ -6,11 +6,11 @@
 
 ---
 
-# Wallaby.js Unit Testing
+## Wallaby.js Test Runner
 
 [Wallaby VS Code Extension](https://marketplace.visualstudio.com/items?itemName=WallabyJs.wallaby-vscode)
 
-## Setup
+### Setup
 
 Install required packages
 
@@ -19,240 +19,211 @@ Install required packages
 Add `wallaby.js` to root folder:
 
 ```
-wallabyWebpack = require("wallaby-webpack");
-var path = require("path");
-
-var compilerOptions = Object.assign(
-  require("./tsconfig.json").compilerOptions,
-  require("./src/tsconfig.spec.json").compilerOptions
-);
-
-compilerOptions.module = "CommonJs";
-
 module.exports = function(wallaby) {
-  var webpackPostprocessor = wallabyWebpack({
-    entryPatterns: ["src/wallabyTest.js", "src/**/*spec.js"],
+  const wallabyWebpack = require("wallaby-webpack");
+  const path = require("path");
+  const fs = require("fs");
 
-    module: {
-      rules: [
-        { test: /\.css$/, loader: ["raw-loader"] },
-        { test: /\.html$/, loader: "raw-loader" },
-        {
-          test: /\.ts$/,
-          loader: "@ngtools/webpack",
-          include: /node_modules/,
-          query: { tsConfigPath: "tsconfig.json" }
-        },
-        {
-          test: /\.js$/,
-          loader: "angular2-template-loader",
-          exclude: /node_modules/
-        },
-        { test: /\.styl$/, loaders: ["raw-loader", "stylus-loader"] },
-        {
-          test: /\.less$/,
-          loaders: [
-            "raw-loader",
-            { loader: "less-loader", options: { paths: [__dirname] } }
-          ]
-        },
-        { test: /\.scss$|\.sass$/, loaders: ["raw-loader", "sass-loader"] },
-        { test: /\.(jpg|png|svg)$/, loader: "url-loader?limit=128000" }
-      ]
-    },
+  const specPattern = "/**/*spec.ts";
+  const angularConfig = require("./angular.json");
 
-    resolve: {
-      extensions: [".js", ".ts"],
-      modules: [
-        path.join(wallaby.projectCacheDir, "src/app"),
-        path.join(wallaby.projectCacheDir, "src"),
-        "node_modules"
-      ]
-    },
-    node: {
-      fs: "empty",
-      net: "empty",
-      tls: "empty",
-      dns: "empty"
-    }
-  });
+  const projects = Object.keys(angularConfig.projects)
+    .map(key => {
+      return { name: key, ...angularConfig.projects[key] };
+    })
+    .filter(project => project.sourceRoot)
+    .filter(
+      project =>
+        project.projectType !== "application" ||
+        (project.architect &&
+          project.architect.test &&
+          project.architect.test.builder ===
+            "@angular-devkit/build-angular:karma")
+    );
+
+  const applications = projects.filter(
+    project => project.projectType === "application"
+  );
+  const libraries = projects.filter(
+    project => project.projectType === "library"
+  );
+
+  const tsConfigFile = projects
+    .map(project => path.join(__dirname, project.root, "tsconfig.spec.json"))
+    .find(tsConfig => fs.existsSync(tsConfig));
+
+  const tsConfigSpec = tsConfigFile
+    ? JSON.parse(fs.readFileSync(tsConfigFile))
+    : {};
+
+  const compilerOptions = Object.assign(
+    require("./tsconfig.json").compilerOptions,
+    tsConfigSpec.compilerOptions
+  );
+  compilerOptions.emitDecoratorMetadata = true;
 
   return {
     files: [
-      {
-        pattern: "src/**/*.+(ts|css|less|scss|sass|styl|html|json|svg)",
+      { pattern: path.basename(__filename), load: false, instrument: false },
+      ...projects.map(project => ({
+        pattern:
+          project.sourceRoot +
+          "/**/*.+(ts|js|css|less|scss|sass|styl|html|json|svg)",
         load: false
-      },
-      { pattern: "src/**/*.d.ts", ignore: true },
-      { pattern: "src/**/*spec.ts", ignore: true }
+      })),
+      ...projects.map(project => ({
+        pattern: project.sourceRoot + specPattern,
+        ignore: true
+      })),
+      ...projects.map(project => ({
+        pattern: project.sourceRoot + "/**/*.d.ts",
+        ignore: true
+      }))
     ],
 
     tests: [
-      { pattern: "src/**/*spec.ts", load: false },
-      { pattern: "src/**/*e2e-spec.ts", ignore: true }
+      ...projects.map(project => ({
+        pattern: project.sourceRoot + specPattern,
+        load: false
+      }))
     ],
 
     testFramework: "jasmine",
 
     compilers: {
-      "**/*.ts": wallaby.compilers.typeScript(compilerOptions)
+      "**/*.ts": wallaby.compilers.typeScript({
+        ...compilerOptions,
+        getCustomTransformers: program => {
+          return {
+            before: [
+              require("@ngtools/webpack/src/transformers/replace_resources").replaceResources(
+                path => true,
+                () => program.getTypeChecker(),
+                false
+              )
+            ]
+          };
+        }
+      })
+    },
+
+    preprocessors: {
+      /* Initialize Test Environment for Wallaby */
+      [path.basename(__filename)]: file => `
+ import '@angular-devkit/build-angular/src/angular-cli-files/models/jit-polyfills';
+ import 'zone.js/dist/zone-testing';
+ import { getTestBed } from '@angular/core/testing';
+ import { BrowserDynamicTestingModule,  platformBrowserDynamicTesting} from '@angular/platform-browser-dynamic/testing';
+ getTestBed().initTestEnvironment(BrowserDynamicTestingModule, platformBrowserDynamicTesting());`
     },
 
     middleware: function(app, express) {
-      var path = require("path");
-      app.use(
-        "/favicon.ico",
-        express.static(path.join(__dirname, "src/favicon.ico"))
-      );
-      app.use("/assets", express.static(path.join(__dirname, "src/assets")));
+      const path = require("path");
+
+      applications.forEach(application => {
+        if (
+          !application.architect ||
+          !application.architect.test ||
+          !application.architect.test.options ||
+          !application.architect.test.options.assets
+        ) {
+          return;
+        }
+
+        application.architect.test.options.assets.forEach(asset => {
+          app.use(
+            asset.slice(application.sourceRoot.length),
+            express.static(path.join(__dirname, asset))
+          );
+        });
+      });
     },
 
     env: {
-      kind: "electron"
+      kind: "chrome"
     },
 
-    postprocessor: webpackPostprocessor,
+    postprocessor: wallabyWebpack({
+      entryPatterns: [
+        ...applications
+          .map(project => project.sourceRoot + "/polyfills.js")
+          .filter(polyfills =>
+            fs.existsSync(path.join(__dirname, polyfills.replace(/js$/, "ts")))
+          ),
+        path.basename(__filename),
+        ...projects.map(
+          project => project.sourceRoot + specPattern.replace(/ts$/, "js")
+        )
+      ],
+
+      module: {
+        rules: [
+          { test: /\.css$/, loader: ["raw-loader"] },
+          { test: /\.html$/, loader: "raw-loader" },
+          {
+            test: /\.ts$/,
+            loader: "@ngtools/webpack",
+            include: /node_modules/,
+            query: { tsConfigPath: "tsconfig.json" }
+          },
+          { test: /\.styl$/, loaders: ["raw-loader", "stylus-loader"] },
+          {
+            test: /\.less$/,
+            loaders: ["raw-loader", { loader: "less-loader" }]
+          },
+          {
+            test: /\.scss$|\.sass$/,
+            loaders: [
+              { loader: "raw-loader" },
+              {
+                loader: "sass-loader",
+                options: { implementation: require("sass") }
+              }
+            ]
+          },
+          { test: /\.(jpg|png|svg)$/, loader: "raw-loader" }
+        ]
+      },
+
+      resolve: {
+        extensions: [".js", ".ts"],
+        modules: [
+          wallaby.projectCacheDir,
+          ...(projects.length
+            ? projects
+                .filter(project => project.root)
+                .map(project =>
+                  path.join(wallaby.projectCacheDir, project.root)
+                )
+            : []),
+          ...(projects.length
+            ? projects
+                .filter(project => project.sourceRoot)
+                .map(project =>
+                  path.join(wallaby.projectCacheDir, project.sourceRoot)
+                )
+            : []),
+          "node_modules"
+        ],
+        alias: libraries.reduce((result, project) => {
+          result[project.name] = path.join(
+            wallaby.projectCacheDir,
+            project.sourceRoot,
+            "public-api"
+          );
+          return result;
+        }, {})
+      }
+    }),
 
     setup: function() {
       window.__moduleBundler.loadTests();
-    },
-
-    debug: true
+    }
   };
 };
-```
-
-Add `wallabyTest.ts` to src-folder
 
 ```
-import './polyfills';
 
-import 'zone.js/dist/zone-testing';
+## End to End Testing
 
-import { getTestBed } from '@angular/core/testing';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
-
-getTestBed().initTestEnvironment(
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting()
-);
-```
-
----
-
-# Protractor
-
-[Protractor Home](https://www.protractortest.org/)
-
-[Locators Reference](https://www.protractortest.org/#/locators)
-
-Navigate to `e2e/src/app.po.ts` & investigate code:
-
-```
-import { browser, by, element } from 'protractor';
-
-export class AppPage {
-  navigateTo() {
-    return browser.get('/');
-  }
-
-  getParagraphText() {
-    return element(by.css('app-root h1')).getText();
-  }
-}
-```
-
-Navigate to `e2e/src/app.e2e-spec.ts` & investigate spec:
-
-```
-import { AppPage } from "./app.po";
-
-describe("workspace-project App", () => {
-  let page: AppPage;
-
-  beforeEach(() => {
-    page = new AppPage();
-  });
-
-  it("should display welcome message", () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual("Angular Testing");
-  });
-});
-```
-
----
-
-# Cypress E2E Testing
-
-[Cypress Docs](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell)
-
-## Setup
-
-Install packages: `npm i --save-dev cypress chance`
-
-Modify `package.json` and run using `npm run e2e`
-
-```
-"scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "test": "ng test",
-    "lint": "ng lint",
-    "cypress": "cypress open"
-  },
-```
-
-Examine sample tests in `/cypress/integration/examples`:
-
-## Starting Cypress
-
-Execute: `npm run e2e`
-
-When running for the first time
-
-- cypress is installed,
-- a popup is shown
-- the cypress folder in the project is created
-
-![cypers](./_images/cypress.png)
-
-![cypers](./_images/cypress-popup.png)
-
-## Write a Test
-
-[Writing your first test](https://docs.cypress.io/guides/getting-started/writing-your-first-test.html)
-
-- Start your App using `ng serve`
-
-- Create a new file "vouchers.spec.js" in `/cypress/integration/`
-
-- Add a reference to cypress to the top of the page
-
-```
-/// <reference types="Cypress" />
-```
-
-- Add the following structure to the file below the import
-
-```
-context('Demos', () => {
-	beforeEach(() => {
-		cy.visit('http://localhost:4200/demos');
-	});
-
-  //Add test here later
-  
-});
-```
-
-
----
-
-# .NET Core Testing in VS Code
-
-[Automatic Unit Testing in .NET Core plus Code Coverage in Visual Studio Code](https://www.hanselman.com/blog/AutomaticUnitTestingInNETCorePlusCodeCoverageInVisualStudioCode.aspx)
+[Protactor](https://www.protractortest.org/#/)
