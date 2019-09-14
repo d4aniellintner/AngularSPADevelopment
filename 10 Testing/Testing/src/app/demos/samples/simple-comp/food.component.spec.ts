@@ -1,5 +1,5 @@
 import { FoodComponent } from "./food.component";
-import { FoodItem } from "../model/food-items";
+import { FoodItem } from "../model/food-item.model";
 import { of } from "rxjs";
 
 describe("FoodComponent:", () => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FoodItem } from "../model/food-items";
+import { FoodItem } from "../model/food-item.model";
 import { FoodService } from "../foodService/food.service";
 import { environment } from "src/environments/environment";
 

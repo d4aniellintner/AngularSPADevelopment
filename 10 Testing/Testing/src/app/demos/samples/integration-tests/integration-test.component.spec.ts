@@ -30,12 +30,12 @@ describe("Integration Test:", () => {
     let testModule = {
       declarations: [IntegrationTestComponent, FoodRowComponent, RatingPipe],
       providers: [{ provide: FoodService, useValue: mockFS }],
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA] //suppresses errors -> remove to check
     };
 
     TestBed.configureTestingModule(testModule);
     fixture = TestBed.createComponent(IntegrationTestComponent);
-    // fixture.detectChanges();
+    fixture.detectChanges();
   });
 
   //Test Test-Setup

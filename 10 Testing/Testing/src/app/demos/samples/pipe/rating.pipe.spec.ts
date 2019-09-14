@@ -12,9 +12,9 @@ describe("RatingPipe", function() {
     expect(p).toBeTruthy();
   });
 
-  it("returns 'geht so' when 2 is passed", function() {
+  it("returns 'ausgezeichnet' when 2 is passed", function() {
     let p = new RatingPipe();
-    expect(p.transform(2)).toEqual("geht so");
+    expect(p.transform(2)).toEqual("ausgezeichnet");
   });
 
   it("throws an err when a negative value is passed", function() {

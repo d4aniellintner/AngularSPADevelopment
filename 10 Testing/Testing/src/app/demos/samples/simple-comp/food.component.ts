@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FoodService } from "../foodService/food.service";
-import { FoodItem } from "../model/food-items";
+import { FoodItem } from "../model/food-item.model";
 import { environment } from "src/environments/environment";
 
 @Component({
