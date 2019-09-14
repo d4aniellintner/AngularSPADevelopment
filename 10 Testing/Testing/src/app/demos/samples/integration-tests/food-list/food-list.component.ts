@@ -20,6 +20,6 @@ export class FoodListComponent implements OnInit {
 
   deleteFood(food: FoodItem) {
     this.food = this.food.filter(i => i != food);
-    this.fs.deleteItem(food).subscribe();
+    this.fs.deleteItem(food);
   }
 }
