@@ -25,12 +25,12 @@ describe("Food Row Integration Test", () => {
   it("should render name bold", () => {
     fixture.componentInstance.food = { name: "Pad Thai", rating: 5 };
     fixture.detectChanges();
-    expect(fixture.nativeElement.querySelector("span").textContent).toContain(
-      "Pad Thai"
-    );
+    expect(
+      fixture.nativeElement.querySelector("#itemName").textContent
+    ).toContain("Pad Thai");
 
     expect(
-      fixture.debugElement.query(By.css("#bogus")).nativeElement.textContent
+      fixture.debugElement.query(By.css("#itemName")).nativeElement.textContent
     ).toContain("Pad Thai");
   });
 });
