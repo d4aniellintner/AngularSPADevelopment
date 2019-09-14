@@ -1,7 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { FoodItem } from "../model/food-item.model";
-import { FoodService } from "../foodService/food.service";
-import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-integration-test",

@@ -25,10 +25,10 @@ describe("Integration Test:", () => {
 
   let fixture: ComponentFixture<FoodListComponent>;
   // let fs : FoodService;
-  let spyFoodService: jasmine.SpyObj<FoodService>;
+  // let spyFoodService: jasmine.SpyObj<FoodService>;
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj("FoodService", ["getItems", "deleteItem"]);
+    // const spy = jasmine.createSpyObj("FoodService", ["getItems", "deleteItem"]);
 
     TestBed.configureTestingModule({
       declarations: [FoodListComponent, FoodRowComponent, RatingPipe],
