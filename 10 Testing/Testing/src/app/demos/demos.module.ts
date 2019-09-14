@@ -14,7 +14,7 @@ import { RatingPipe } from "./samples/pipe/rating.pipe";
 import { TestPipeComponent } from "./samples/pipe/test-pipe.component";
 import { FoodComponent } from "./samples/simple-comp/food.component";
 import { SimpleServiceComponent } from "./samples/simple-service/simple-service.component";
-import { UnitTestingComponent } from "./samples/unit-testing/unit-testing.component";
+import { UnitTestingComponent } from "./samples/simple-tests/unit-testing.component";
 import { FoodListComponent } from "./samples/integration-tests/food-list/food-list.component";
 import { SharedModule } from "../shared/shared.module";
 
