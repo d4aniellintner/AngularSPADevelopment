@@ -15,27 +15,24 @@ describe("Integration Test:", () => {
     { name: "Cannelloni", rating: 4 },
     { name: "Cordon Bleu", rating: 2 }
   ];
-
   let serviceResult = [
     { name: "Pad Thai", rating: 5 },
     { name: "Butter Chicken", rating: 5 },
     { name: "Cannelloni", rating: 4 }
   ];
-
   let fixture: ComponentFixture<FoodListComponent>;
 
   beforeEach(() => {
     mockFS = jasmine.createSpyObj(["getItems", "deleteItem"]);
 
-    let testModule = {
+    let module = {
       declarations: [FoodListComponent, FoodRowComponent, RatingPipe],
       providers: [{ provide: FoodService, useValue: mockFS }],
       schemas: [NO_ERRORS_SCHEMA]
     };
 
-    TestBed.configureTestingModule(testModule);
+    TestBed.configureTestingModule(module);
     fixture = TestBed.createComponent(FoodListComponent);
-    // fixture.detectChanges();
   });
 
   it("should render each FoodItem as FoodItemRow", () => {

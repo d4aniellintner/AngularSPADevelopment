@@ -11,7 +11,6 @@ import { environment } from "src/environments/environment";
 export class FoodComponent implements OnInit {
   constructor(private fs: FoodService) {}
 
-  mdpath = environment.markdownPath + "simplecomp.md";
   food: FoodItem[] | null;
 
   ngOnInit() {

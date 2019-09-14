@@ -27,8 +27,9 @@ export class FoodService {
     return of(true);
   }
 
-  addItem(item: FoodItem) {
+  addItem(item: FoodItem): Observable<boolean> {
     this.items.push(item);
     this.Items.next(this.items);
+    return of(true);
   }
 }
