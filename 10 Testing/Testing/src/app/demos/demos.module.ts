@@ -18,6 +18,7 @@ import { UnitTestingComponent } from "./samples/simple-tests/unit-testing.compon
 import { FoodListComponent } from "./samples/integration-tests/food-list/food-list.component";
 import { SharedModule } from "../shared/shared.module";
 import { UseMockComponent } from "./samples/use-mock/use-mock.component";
+import { IntroAsyncComponent } from "./samples/intro-async/intro-async.component";
 
 const demoRoutes: Routes = [
   {
@@ -31,6 +32,7 @@ const demoRoutes: Routes = [
       { path: "simplecomp", component: FoodComponent },
       { path: "integrationtests", component: IntegrationTestComponent },
       { path: "introe2e", component: IntroE2eComponent },
+      { path: "async", component: IntroAsyncComponent },
       { path: "mock", component: UseMockComponent }
     ]
   }
@@ -50,7 +52,8 @@ const demoRoutes: Routes = [
     FoodComponent,
     FoodRowComponent,
     FoodListComponent,
-    UseMockComponent
+    UseMockComponent,
+    IntroAsyncComponent
   ],
   imports: [
     CommonModule,

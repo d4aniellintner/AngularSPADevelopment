@@ -34,14 +34,16 @@
   {
     "url": "integrationtests",
     "title": "Shallow Integration Tests",
-    "component": "ShallowIntegrationComponent",
-    "markdown": "shallow"
+    "component": "ShallowIntegrationComponent"
+  },
+  {
+    "url": "async",
+    "title": "Intro Async",
+    "component": "IntroAsyncComponent"
   },
   {
     "url": "introe2e",
     "title": "Intro E2E Tests",
-    "component": "IntroE2eComponent",
-    "markdown": "introe2e",
-    "mdonly": true
+    "component": "IntroE2eComponent"
   }
 ]
