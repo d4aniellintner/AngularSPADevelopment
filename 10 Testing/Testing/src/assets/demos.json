@@ -26,6 +26,12 @@
     "markdown": "simplecomp"
   },
   {
+    "url": "mock",
+    "title": "Component with Mock",
+    "component": "SimpleServiceComponent",
+    "markdown": "simplecomp"
+  },
+  {
     "url": "integrationtests",
     "title": "Shallow Integration Tests",
     "component": "ShallowIntegrationComponent",
