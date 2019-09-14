@@ -1,5 +1,4 @@
 import { Component, OnInit } from "@angular/core";
-import { environment } from "src/environments/environment";
 
 @Component({
   selector: "app-test-pipe",
@@ -8,8 +7,6 @@ import { environment } from "src/environments/environment";
 })
 export class TestPipeComponent implements OnInit {
   constructor() {}
-
-  mdpath = environment.markdownPath + "pipe.md";
 
   ngOnInit() {}
 }

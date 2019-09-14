@@ -9,7 +9,5 @@ import { environment } from "src/environments/environment";
 export class SimpleServiceComponent implements OnInit {
   constructor() {}
 
-  mdpath = environment.markdownPath + "simpleservice.md";
-
   ngOnInit() {}
 }

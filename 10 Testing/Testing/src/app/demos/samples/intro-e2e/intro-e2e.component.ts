@@ -9,7 +9,5 @@ import { environment } from "src/environments/environment";
 export class IntroE2eComponent implements OnInit {
   constructor() {}
 
-  mdpath = environment.markdownPath + "introe2e.md";
-
   ngOnInit() {}
 }
