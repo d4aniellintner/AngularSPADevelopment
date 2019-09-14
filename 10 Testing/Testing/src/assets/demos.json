@@ -20,6 +20,12 @@
     "mdonly": true
   },
   {
+    "url": "mock",
+    "title": "Use Mock",
+    "component": "UseMockComponent",
+    "markdown": "mock"
+  },
+  {
     "url": "simplecomp",
     "title": "Simple Component",
     "component": "SimpleServiceComponent",

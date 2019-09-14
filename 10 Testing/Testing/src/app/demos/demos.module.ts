@@ -17,6 +17,7 @@ import { SimpleServiceComponent } from "./samples/simple-service/simple-service.
 import { UnitTestingComponent } from "./samples/simple-tests/unit-testing.component";
 import { FoodListComponent } from "./samples/integration-tests/food-list/food-list.component";
 import { SharedModule } from "../shared/shared.module";
+import { UseMockComponent } from "./samples/use-mock/use-mock.component";
 
 const demoRoutes: Routes = [
   {
@@ -29,7 +30,8 @@ const demoRoutes: Routes = [
       { path: "simpleservice", component: SimpleServiceComponent },
       { path: "simplecomp", component: FoodComponent },
       { path: "integrationtests", component: IntegrationTestComponent },
-      { path: "introe2e", component: IntroE2eComponent }
+      { path: "introe2e", component: IntroE2eComponent },
+      { path: "mock", component: UseMockComponent }
     ]
   }
 ];
@@ -47,7 +49,8 @@ const demoRoutes: Routes = [
     RatingPipe,
     FoodComponent,
     FoodRowComponent,
-    FoodListComponent
+    FoodListComponent,
+    UseMockComponent
   ],
   imports: [
     CommonModule,
