@@ -15,6 +15,8 @@ import { TestPipeComponent } from "./samples/pipe/test-pipe.component";
 import { FoodComponent } from "./samples/simple-comp/food.component";
 import { SimpleServiceComponent } from "./samples/simple-service/simple-service.component";
 import { UnitTestingComponent } from "./samples/unit-testing/unit-testing.component";
+import { FoodListComponent } from "./samples/integration-tests/food-list/food-list.component";
+import { SharedModule } from "../shared/shared.module";
 
 const demoRoutes: Routes = [
   {
@@ -44,7 +46,8 @@ const demoRoutes: Routes = [
     TestPipeComponent,
     RatingPipe,
     FoodComponent,
-    FoodRowComponent
+    FoodRowComponent,
+    FoodListComponent
   ],
   imports: [
     CommonModule,
@@ -52,6 +55,7 @@ const demoRoutes: Routes = [
     RouterModule.forChild(demoRoutes),
     MaterialModule,
     HttpClientModule,
+    SharedModule,
     MarkdownModule.forRoot({
       loader: HttpClient
     })

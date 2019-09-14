@@ -3,7 +3,6 @@
     <mat-card-title>{{ title }}</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-    <markdown [src]="mdpath" lineHighlight [line]="'6, 10-16'" [lineOffset]="5">
-    </markdown>
+    <app-markdown-renderer [md]="'readme'"></app-markdown-renderer>
   </mat-card-content>
 </mat-card>

@@ -9,19 +9,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./integration-test.component.scss"]
 })
 export class IntegrationTestComponent implements OnInit {
-  mdpath = environment.markdownPath + "shallow.md";
-  food: FoodItem[] | null;
-
-  constructor(private fs: FoodService) {}
-
-  ngOnInit() {
-    this.fs.getItems().subscribe(data => {
-      this.food = data;
-    });
+   ngOnInit() {
   }
 
-  deleteFood(food: FoodItem) {
-    this.food = this.food.filter(i => i != food);
-    this.fs.deleteItem(food).subscribe();
-  }
 }

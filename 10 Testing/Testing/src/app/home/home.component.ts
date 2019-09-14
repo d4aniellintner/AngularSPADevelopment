@@ -10,7 +10,6 @@ export class HomeComponent implements OnInit {
   constructor() {}
 
   title: string = environment.title;
-  mdpath = environment.markdownPath + "readme.md";
 
   ngOnInit() {}
 }
