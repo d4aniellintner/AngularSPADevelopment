@@ -9,7 +9,7 @@ import { environment } from "src/environments/environment";
   styleUrls: ["./integration-test.component.scss"]
 })
 export class IntegrationTestComponent implements OnInit {
-   ngOnInit() {
-  }
+  f: FoodItem = { name: "Cordon Bleu", rating: 4 };
 
+  ngOnInit() {}
 }
