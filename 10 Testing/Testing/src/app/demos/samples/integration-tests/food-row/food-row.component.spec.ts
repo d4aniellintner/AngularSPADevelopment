@@ -5,15 +5,13 @@ import { RatingPipe } from "../../pipe/rating.pipe";
 import { By } from "@angular/platform-browser";
 
 describe("Food Row Integration Test", () => {
-  let testModule = {
-    declarations: [FoodRowComponent, RatingPipe],
-    schemas: [NO_ERRORS_SCHEMA]
-  };
-
   let fixture: ComponentFixture<FoodRowComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule(testModule);
+    TestBed.configureTestingModule({
+      declarations: [FoodRowComponent, RatingPipe],
+      schemas: [NO_ERRORS_SCHEMA]
+    });
     fixture = TestBed.createComponent(FoodRowComponent);
   });
 
@@ -22,7 +20,7 @@ describe("Food Row Integration Test", () => {
     expect(fixture.componentInstance.food.name).toEqual("Pad Thai");
   });
 
-  it("should render name bold", () => {
+  it("should render the food name", () => {
     fixture.componentInstance.food = { name: "Pad Thai", rating: 5 };
     fixture.detectChanges();
     expect(

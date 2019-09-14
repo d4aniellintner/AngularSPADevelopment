@@ -8,8 +8,7 @@ import { FoodRowComponent } from "../food-row/food-row.component";
 import { RatingPipe } from "../../pipe/rating.pipe";
 
 describe("Integration Test:", () => {
-  // let mockFS;
-
+  let mockFS;
   let foodData = [
     { name: "Pad Thai", rating: 5 },
     { name: "Butter Chicken", rating: 5 },
@@ -17,10 +16,7 @@ describe("Integration Test:", () => {
     { name: "Cordon Bleu", rating: 2 }
   ];
 
-  let fs: FoodService = new FoodService(undefined);
-  fs.getItems = () => of(foodData);
-
-  let deleteResult = [
+  let serviceResult = [
     { name: "Pad Thai", rating: 5 },
     { name: "Butter Chicken", rating: 5 },
     { name: "Cannelloni", rating: 4 }
@@ -29,29 +25,26 @@ describe("Integration Test:", () => {
   let fixture: ComponentFixture<FoodListComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
+    mockFS = jasmine.createSpyObj(["getItems", "deleteItem"]);
+
+    let testModule = {
       declarations: [FoodListComponent, FoodRowComponent, RatingPipe],
-      providers: [FoodService],
+      providers: [{ provide: FoodService, useValue: mockFS }],
       schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
+    };
+
+    TestBed.configureTestingModule(testModule);
+    fixture = TestBed.createComponent(FoodListComponent);
+    // fixture.detectChanges();
   });
 
   it("should render each FoodItem as FoodItemRow", () => {
-    spyOn(FoodService.prototype, "getItems").and.returnValue(of(foodData));
-
-    fixture = TestBed.createComponent(FoodListComponent);
-    const comp = fixture.debugElement.componentInstance;
+    mockFS.getItems.and.returnValue(of(foodData));
+    mockFS.deleteItem.and.returnValue(of(serviceResult));
     fixture.detectChanges();
 
-    // fs.getItems.and.returnValue(of(foodData));
-    // spyFoodService.deleteItem.and.returnValue(of(serviceResult));
-
-    expect(comp.food.lenght).toBe(3);
-
-    expect(comp.debugElement.query(By.css("div")).nativeElement.lenght).toBe(4);
-
-    // const rows = fixture.debugElement.queryAll(By.directive(FoodRowComponent));
-    // expect(rows.length).toEqual(4);
-    // expect(rows[0].componentInstance.food.name).toEqual("Pad Thai");
+    const rows = fixture.debugElement.queryAll(By.directive(FoodRowComponent));
+    expect(rows.length).toEqual(4);
+    expect(rows[0].componentInstance.food.name).toEqual("Pad Thai");
   });
 });
