@@ -1,0 +1,13 @@
+.row {
+	min-height: 2.5rem;
+	cursor: pointer;
+	margin: .2rem 0;
+	background-color: darkslateblue;
+	color: white;
+	padding: .3em;
+}
+
+.row:hover {
+	background-color: slateblue;
+	color: black;
+}
