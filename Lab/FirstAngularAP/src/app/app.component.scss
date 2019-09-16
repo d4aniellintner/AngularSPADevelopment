@@ -1,0 +1,26 @@
+.container {
+  background-color: yellow;
+  height: 100vh;
+}
+
+.main {
+  background-color: lightgreen;
+  height: 80vh;
+  display: flex;
+  flex-direction: row;
+}
+
+.sideMenu {
+  background-color: lightblue;
+  width: 250px;
+}
+
+.mainContent {
+  background-color: lightslategray;
+  flex-grow: 3;
+}
+
+.bar {
+  background-color: lightpink;
+  height: 10vh;
+}
