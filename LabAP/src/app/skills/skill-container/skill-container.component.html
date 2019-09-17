@@ -1,0 +1,6 @@
+<div>
+  <h2>The Skills</h2>
+  <div *ngFor="let s of skills" (click)="selectSkill(s)" class="row">
+    {{ s.name }}
+  </div>
+</div>
