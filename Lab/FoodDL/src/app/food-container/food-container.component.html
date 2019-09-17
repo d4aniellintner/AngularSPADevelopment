@@ -1,0 +1,7 @@
+<app-food-list 
+    [foodlist]="foodlist"
+    (foodSelected)=onFoodSelected($event)></app-food-list>
+    <hr/>
+<app-food-form *ngIf="selectedFood"
+    [food]="selectedFood"
+></app-food-form>

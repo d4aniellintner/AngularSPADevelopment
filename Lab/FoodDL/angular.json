@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "FirstAngularAP": {
+    "FoodDL": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/FirstAngularAP",
+            "outputPath": "dist/FoodDL",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -67,18 +67,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "FirstAngularAP:build"
+            "browserTarget": "FoodDL:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "FirstAngularAP:build:production"
+              "browserTarget": "FoodDL:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "FirstAngularAP:build"
+            "browserTarget": "FoodDL:build"
           }
         },
         "test": {
@@ -115,15 +115,15 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "FirstAngularAP:serve"
+            "devServerTarget": "FoodDL:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "FirstAngularAP:serve:production"
+              "devServerTarget": "FoodDL:serve:production"
             }
           }
         }
       }
     }},
-  "defaultProject": "FirstAngularAP"
+  "defaultProject": "FoodDL"
 }

@@ -9,6 +9,6 @@ export class SkillService {
 	constructor(private httpClient: HttpClient) {}
 
 	getSkills() {
-		return this.httpClient.get<Skill[]>('assets/skill.json');
+		return this.httpClient.get<Skill[]>('assets/skills.json');
 	}
 }

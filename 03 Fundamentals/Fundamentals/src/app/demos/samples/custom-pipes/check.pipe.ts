@@ -5,7 +5,7 @@ import { Pipe, PipeTransform, ElementRef } from '@angular/core';
 })
 export class CheckPipe implements PipeTransform {
 	transform(checked: boolean): any {
-		let result: string = checked ? '<i class="material-icons">check</i>' : '';
+		let result: string = checked ? '<i class="material-icons">adb</i>' : '';
 		return result;
 	}
 }

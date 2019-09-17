@@ -1,0 +1,14 @@
+<table>
+    <thead>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Calories</th>
+    </thead>
+    <tbody>
+        <tr class="food-row" *ngFor="let f of foodlist" (click)="selectFood(f)">
+            <td>{{f.Name}}</td>
+            <td>{{f.Price}}</td>
+            <td>{{f.Calories}}</td>
+        </tr>
+    </tbody>
+</table>

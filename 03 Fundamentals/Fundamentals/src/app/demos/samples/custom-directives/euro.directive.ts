@@ -1,22 +1,22 @@
-import { Directive, ElementRef, HostListener } from "@angular/core";
+import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-  selector: "[toEuro]"
+	selector: '[toEuro]'
 })
 export class EuroDirective {
-  private el: HTMLInputElement;
+	private el: HTMLInputElement;
 
-  constructor(private elementRef: ElementRef) {
-    this.el = this.elementRef.nativeElement;
-  }
+	constructor(private elementRef: ElementRef) {
+		this.el = this.elementRef.nativeElement;
+	}
 
-  @HostListener("focus", ["$event.target.value"])
-  onFocus(value) {
-    this.el.value = value.replace("€ ", "");
-  }
+	@HostListener('focus', [ '$event.target.value' ])
+	onFocus(value) {
+		this.el.value = value.replace('€ ', '');
+	}
 
-  @HostListener("blur", ["$event.target.value"])
-  onBlur(value) {
-    this.el.value = `€ ${value}`;
-  }
+	@HostListener('blur', [ '$event.target.value' ])
+	onBlur(value) {
+		this.el.value = `€ ${value}`;
+	}
 }
