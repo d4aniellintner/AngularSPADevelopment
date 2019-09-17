@@ -10,6 +10,7 @@
         <tr>
           <th>ID</th>
           <th>Text</th>
+          <th>Amount</th>
           <th></th>
         </tr>
       </thead>
@@ -17,6 +18,7 @@
         <tr *ngFor="let v of vouchers">
           <td>{{ v.ID }}</td>
           <td>{{ v.Text }}</td>
+          <td>{{ v.Amount }}</td>
           <td><a (click)="showVoucher(v)">Edit</a></td>
         </tr>
       </tbody>

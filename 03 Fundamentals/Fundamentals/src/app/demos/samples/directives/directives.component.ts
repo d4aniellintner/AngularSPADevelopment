@@ -10,13 +10,14 @@ export class DirectivesComponent implements OnInit {
   bgcolor: string = "blue";
   cssclass: string = "big";
   isDisabled: boolean = true;
+  isHidden: boolean = false;
 
   constructor() {}
 
   ngOnInit() {}
 
   changeColor() {
-    this.bgcolor = this.bgcolor === "blue" ? "red" : "blue";
+    this.bgcolor = this.bgcolor == "blue" ? "red" : "blue";
   }
 
   changeClass() {
@@ -29,5 +30,9 @@ export class DirectivesComponent implements OnInit {
 
   toggleInput() {
     this.isDisabled = !this.isDisabled;
+  }
+
+  hideInput() {
+    this.isHidden = !this.isHidden;
   }
 }

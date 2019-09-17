@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Skill } from "../model/skill.model";
 import { HttpClient } from "@angular/common/http";
+import { SkillService } from "../skill.service";
 
 @Component({
   selector: "app-skill-container",
@@ -8,12 +9,12 @@ import { HttpClient } from "@angular/common/http";
   styleUrls: ["./skill-container.component.scss"]
 })
 export class SkillContainerComponent implements OnInit {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private skillservice: SkillService) {}
 
   skills: Skill[];
 
   ngOnInit() {
-    this.httpClient.get<Skill[]>("assets/skills.json").subscribe(data => {
+    this.skillservice.getSkills().subscribe(data => {
       this.skills = data;
     });
   }
