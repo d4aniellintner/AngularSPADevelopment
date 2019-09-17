@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { Skill } from "../model/skill.model";
-import { HttpClient } from "@angular/common/http";
 import { SkillService } from "../skill.service";
 
 @Component({
