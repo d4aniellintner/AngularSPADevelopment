@@ -103,3 +103,9 @@ Fetch from Upstream:
 ```
  git fetch upstream
 ```
+
+# Extensions
+
+[Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+
+[Git Extensions for Windows](https://github.com/gitextensions/gitextensions)
