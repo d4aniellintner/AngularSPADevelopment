@@ -211,8 +211,7 @@ export class ClassesComponent implements OnInit {
     //Protected Properties
 
     class Person {
-      protected name: string;
-      constructor(name: string) {
+      constructor(protected name: string) {
         this.name = name;
       }
     }

@@ -16,9 +16,9 @@ export class ObjectLiteralsComponent implements OnInit {
 
     // Plain old JavaScript
     var myPerson = new Object();
-    myPerson.smile = function() {
-      console.log;
-    };
+    // myPerson.smile = function() {
+    //   console.log;
+    // };
 
     var otherPerson = <any>{};
     otherPerson.smile = function() {};

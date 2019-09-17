@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Skill } from "../model/skill.model";
+import { HttpClient } from "@angular/common/http";
 
 @Component({
   selector: "app-skill-container",
@@ -7,15 +8,15 @@ import { Skill } from "../model/skill.model";
   styleUrls: ["./skill-container.component.scss"]
 })
 export class SkillContainerComponent implements OnInit {
-  constructor() {}
+  constructor(private httpClient: HttpClient) {}
 
-  skills: Skill[] = [
-    { id: 1, name: "TypeScript", hours: 3, completed: false },
-    { id: 2, name: "Node", hours: 2, completed: false },
-    { id: 3, name: "ngBascis", hours: 30, completed: false }
-  ];
+  skills: Skill[];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.httpClient.get<Skill[]>("assets/skills.json").subscribe(data => {
+      this.skills = data;
+    });
+  }
 
   selectSkill(item: Skill) {
     console.log(`You clicked ${item.name}`);
