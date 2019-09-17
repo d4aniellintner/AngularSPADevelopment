@@ -29,6 +29,7 @@ export class ClassesComponent implements OnInit {
     console.log("vouchertext is:" + v["Text"]);
 
     var vouchers = new Array<Voucher>();
+
     var voucherA: Voucher = {
       ID: 1,
       Text: "Media Markt",
@@ -103,9 +104,7 @@ export class ClassesComponent implements OnInit {
     console.log("b2 with Text: " + b2.text + " was " + b2.paid);
 
     class Smurf {
-      readonly name: string;
-
-      constructor(name: string) {
+      constructor(readonly name: string) {
         if (name.length < 1) {
           throw new Error("Empty name!");
         }
@@ -224,9 +223,7 @@ export class ClassesComponent implements OnInit {
       }
 
       public introduceSelf() {
-        return `Hello, my name is ${this.name} and I work in ${
-          this.department
-        } department.`;
+        return `Hello, my name is ${this.name} and I work in ${this.department} department.`;
       }
     }
 
