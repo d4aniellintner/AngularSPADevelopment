@@ -21,16 +21,17 @@ export class StructDirectivesComponent implements OnInit {
   direction = DirectionEnum;
 
   ngOnInit() {
-    this.vs.getVouchers().subscribe(data => {
-      this.vouchers = data;
-    });
+    this.vs.getVouchers().subscribe(
+      data => {
+        this.vouchers = data;
+      },
+      err => console.log("err: ", err)
+    );
   }
 
   showVoucher(v: Voucher) {
     console.log(
-      `navigating to voucher with text "${
-        v.Text
-      }" - covered later in more detail`
+      `navigating to voucher with text "${v.Text}" - covered later in more detail`
     );
   }
 }
