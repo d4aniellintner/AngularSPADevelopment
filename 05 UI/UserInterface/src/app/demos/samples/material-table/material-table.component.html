@@ -24,21 +24,25 @@
   <ng-container matColumnDef="Date">
     <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ element.Date | date: "longDate" }}
+      {{ element.Date | date: 'longDate' }}
     </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="Amount">
     <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      {{ element.Amount | currency: "EUR":true }}
+      {{ element.Amount | currency: 'EUR':true }}
     </mat-cell>
   </ng-container>
 
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-raised-button (click)="editItem(element)">Edit</button>
+    </td>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-  <mat-row
-    *matRowDef="let row; columns: displayedColumns"
-    (click)="editItem(row)"
-  ></mat-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
 </mat-table>
 <!-- </div> -->
