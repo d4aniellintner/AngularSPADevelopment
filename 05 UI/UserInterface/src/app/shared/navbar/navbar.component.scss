@@ -1,4 +1,4 @@
-@import "stylevars.scss";
+@import 'stylevars.scss';
 
 .navTitle {
   color: $ngRed;
@@ -6,7 +6,7 @@
 }
 
 .navLink {
-  @include link($medium-font, $light-col);
+  @include link($light-col, $medium-font);
 }
 
 mat-toolbar-row {
