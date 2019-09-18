@@ -8,7 +8,9 @@
   class="grid"
 >
   <div gdArea="navbar" class="navbar"><app-navbar></app-navbar></div>
-  <div gdArea="main" class="main"><router-outlet></router-outlet></div>
+  <div gdArea="main" class="main">
+    <router-outlet></router-outlet>
+  </div>
   <div gdArea="sidemenu" fxHide.lt-md class="sidemenu">
     <app-side-panel> </app-side-panel>
     <router-outlet name="sidebarOutlet"></router-outlet>

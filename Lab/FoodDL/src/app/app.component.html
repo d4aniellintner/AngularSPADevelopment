@@ -1,20 +1,32 @@
 
-<div>
-  <!-- header -->
-  <div class="header">Header</div>
+<div 
+  gdAreas="header header | sidebar main | footer footer "
+  gdColumns="100px auto"
+  gdAreas.lt-sm="header  | main | footer"
+  gdColumns.lt-sm="auto"
+  gdRow="10px auto "
+  gdGap="10px"
 
-  <!-- main -->
-  <div class="main">
+> 
+  <!-- header -->
+  <mat-card gdArea="header" fxLayout="row" fxLayoutGap="20px" class="header">
+    <button mat-button routerLink="">Home</button>
+    <button mat-button routerLink="foodlist">Foodlist</button>
+    <button mat-button routerLink="fooddetail/1">Banana</button>
+  </mat-card>
+
     <!-- side -->
-    <div></div>
+    <mat-card 
+      gdArea="sidebar"
+      fxHide.lt-sm
+    >Sidebar</mat-card>
 
     <!-- content -->
-    <div>
-      <app-food-container></app-food-container>
-    </div>
-  </div>
+    <mat-card  gdArea="main">
+      <router-outlet></router-outlet>
+    </mat-card>
   
-  <!-- footer -->
-  <div>Footer</div>
+    <!-- footer -->
+  <mat-card gdArea="footer">Footer</mat-card>
   
 </div>

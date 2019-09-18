@@ -9,10 +9,12 @@ import { FoodContainerComponent } from './food-container/food-container.componen
 import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { HomeComponent } from './home/home.component';
+import { MaterialModule } from './material.module';
 
 @NgModule({
-	declarations: [ AppComponent, FoodListComponent, FoodFormComponent, FoodContainerComponent ],
-	imports: [ BrowserModule, AppRoutingModule, HttpClientModule, FormsModule ],
+	declarations: [ AppComponent, FoodListComponent, FoodFormComponent, FoodContainerComponent, HomeComponent ],
+	imports: [ BrowserModule, AppRoutingModule, HttpClientModule, FormsModule, MaterialModule ],
 	providers: [],
 	bootstrap: [ AppComponent ]
 })
