@@ -1,14 +1,19 @@
-<table>
-    <thead>
-        <th>Name</th>
-        <th>Price</th>
-        <th>Calories</th>
-    </thead>
-    <tbody>
-        <tr class="food-row" *ngFor="let f of foodlist" (click)="selectFood(f)">
-            <td>{{f.Name}}</td>
-            <td>{{f.Price}}</td>
-            <td>{{f.Calories}}</td>
-        </tr>
-    </tbody>
+
+Filter: <input [(ngModel)]="filterQuery" (change)=doFilter() />
+
+<table mat-table [dataSource]="foodlist" class="food-table mat-elevation-z8" >
+    <ng-container matColumnDef="Name">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">{{element.Name}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Calories">
+        <th mat-header-cell *matHeaderCellDef>Calories</th>
+        <td mat-cell *matCellDef="let element">{{element.Calories}}</td>
+    </ng-container>
+    <ng-container matColumnDef="Price">
+            <th mat-header-cell *matHeaderCellDef>Price</th>
+            <td mat-cell *matCellDef="let element">{{element.Price}}</td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selectFood(row)" class="food-row"></tr>
 </table>

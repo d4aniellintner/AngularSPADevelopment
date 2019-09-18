@@ -9,11 +9,19 @@ import { Food } from '../model/Food';
 export class FoodListComponent implements OnInit {
 	constructor() {}
 
-	@Input() foodlist: Food[];
+	//foodlist2 = [ { Name: 'foodname' } ];
+	displayedColumns: string[] = [ 'Name', 'Calories', 'Price' ];
+	filterQuery: string;
+	@Input() foodlist: Food[] = [];
 	@Output() foodSelected: EventEmitter<Food> = new EventEmitter();
 	ngOnInit() {}
 
 	selectFood(f: Food) {
 		this.foodSelected.emit(f);
+	}
+
+	doFilter() {
+		//this.filterQuery = this.filterQuery.trim().toLowerCase();
+		//this.foodlist.filter(f => (f.Name(this.filterQuery)));
 	}
 }
