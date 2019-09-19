@@ -1,110 +1,105 @@
-import { Component, OnInit } from "@angular/core";
-import { Subscription, Observable, from, of } from "rxjs";
-import { map, filter } from "rxjs/operators";
-import * as $ from "jquery";
+import { Component, OnInit } from '@angular/core';
+import { Subscription, Observable, from, of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 @Component({
-  selector: "app-simple-observable",
-  templateUrl: "./creating-observable.component.html",
-  styleUrls: ["./creating-observable.component.scss"]
+	selector: 'app-simple-observable',
+	templateUrl: './creating-observable.component.html',
+	styleUrls: [ './creating-observable.component.scss' ]
 })
 export class CreatingObservableComponent implements OnInit {
-  constructor() {}
+	constructor() {}
 
-  url = "/assets/vouchers.json";
-  numbers = [2, 5, 9, 12, 22];
+	url = '/assets/vouchers.json';
+	numbers = [ 2, 5, 9, 12, 22 ];
 
-  result$: Observable<any>;
-  nbrSubscription: Subscription;
+	result$: Observable<any>;
+	nbrSubscription: Subscription;
 
-  errHandler = err => {
-    console.log(err);
-  };
+	errHandler = (err) => {
+		console.log(err);
+	};
 
-  complete = () => console.log("complete");
+	complete = () => console.log('complete');
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  useNewObs() {
-    this.result$ = new Observable(observer => {
-      let idx = 0;
+	useNewObs() {
+		this.result$ = new Observable((observer) => {
+			let idx = 0;
 
-      let getNumber = () => {
-        observer.next(this.numbers[idx++]);
+			let getNumber = () => {
+				observer.next(this.numbers[idx++]);
 
-        if (idx < this.numbers.length) {
-          setTimeout(getNumber, 250);
-        } else {
-          observer.complete();
-        }
-      };
+				if (idx < this.numbers.length) {
+					setTimeout(getNumber, 250);
+				} else {
+					observer.complete();
+				}
+			};
 
-      getNumber();
-    });
+			getNumber();
+		});
 
-    this.result$.subscribe((
-      data: number //onNext
-    ) => console.log("current number: ", data));
-    this.errHandler; //onErr
-    this.complete; //onComplete
-  }
+		this.result$.subscribe((
+			data: number //onNext
+		) => console.log('current number: ', data));
+		this.errHandler; //onErr
+		this.complete; //onComplete
+	}
 
-  useObsFrom() {
-    this.result$ = from(this.numbers);
+	useObsFrom() {
+		this.result$ = from(this.numbers);
 
-    this.nbrSubscription = this.result$.subscribe(
-      (data: number) => console.log("useObsFrom: ", data), //onNext
-      this.errHandler, //onErr
-      this.complete //onComplete
-    );
+		this.nbrSubscription = this.result$.subscribe(
+			(data: number) => console.log('useObsFrom: ', data), //onNext
+			this.errHandler, //onErr
+			this.complete //onComplete
+		);
 
-    //Same as above using chaining
-    // this.nbrSubscription = from(this.numbers).subscribe((data: number) =>
-    //   console.log("useObsFrom: ", data)
-    // );
-  }
+		//Same as above using chaining
+		// this.nbrSubscription = from(this.numbers).subscribe((data: number) =>
+		//   console.log("useObsFrom: ", data)
+		// );
+	}
 
-  useOf() {
-    this.result$ = of(this.numbers);
-    this.result$.subscribe(data => console.log(data));
-  }
+	useOf() {
+		this.result$ = of(this.numbers);
+		this.result$.subscribe((data) => console.log(data));
+	}
 
-  // Wraps an Object that uses Callbacks
-  getGeolocation$(): Observable<Position> {
-    return new Observable(observer => {
-      navigator.geolocation.getCurrentPosition(
-        (pos: Position) => {
-          observer.next(pos);
-          observer.complete();
-        },
-        (err: PositionError) => {
-          observer.error(err);
-        }
-      );
-    });
-  }
+	// Wraps an Object that uses Callbacks
+	getGeolocation$(): Observable<Position> {
+		return new Observable((observer) => {
+			navigator.geolocation.getCurrentPosition(
+				(pos: Position) => {
+					observer.next(pos);
+					observer.complete();
+				},
+				(err: PositionError) => {
+					observer.error(err);
+				}
+			);
+		});
+	}
 
-  //Use the wrapped Callback
-  wrappingCallbacks() {
-    window.navigator.onLine;
+	//Use the wrapped Callback
+	wrappingCallbacks() {
+		this.getGeolocation$().subscribe((loc) => {
+			console.log('current Geolocation:', loc);
+		});
+	}
 
-    this.getGeolocation$().subscribe(loc => {
-      console.log("current Geolocation:", loc);
-    });
-  }
+	//Wrapping a Promise
+	usePromiseToObs() {
+		let url = 'https://jsonplaceholder.typicode.com/todos';
+		from($.ajax(url)).subscribe((data) => console.log('data from jquery', data));
+	}
 
-  //Wrapping a Promise
-  usePromiseToObs() {
-    let url = "https://jsonplaceholder.typicode.com/todos";
-    from($.ajax(url)).subscribe(data => console.log("data from jquery", data));
-  }
-
-  useOperator() {
-    from([2, 5, 9, 12, 22])
-      .pipe(
-        filter(n => n > 6),
-        map(n => n * 2)
-      )
-      .subscribe((data: number) => console.log("useOperator: ", data));
-  }
+	useOperator() {
+		from([ 2, 5, 9, 12, 22 ])
+			.pipe(filter((n) => n > 6), map((n) => n * 2))
+			.subscribe((data: number) => console.log('useOperator: ', data));
+	}
 }

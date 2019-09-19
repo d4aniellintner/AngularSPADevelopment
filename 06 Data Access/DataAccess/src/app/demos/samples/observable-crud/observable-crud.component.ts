@@ -1,123 +1,107 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { VouchersService } from "../voucher.service";
-import { Voucher } from "../model";
-import { environment } from "src/environments/environment";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { VouchersService } from '../voucher.service';
+import { Voucher } from '../model';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: "app-observable-crud",
-  templateUrl: "./observable-crud.component.html",
-  styleUrls: ["./observable-crud.component.scss"]
+	selector: 'app-observable-crud',
+	templateUrl: './observable-crud.component.html',
+	styleUrls: [ './observable-crud.component.scss' ]
 })
 export class ObservableCrudComponent implements OnInit {
-  constructor(private httpClient: HttpClient, private vs: VouchersService) {}
+	constructor(private httpClient: HttpClient, private vs: VouchersService) {}
 
-  result: any;
-  fname: string;
+	result: any;
+	fname: string;
 
-  ngOnInit() {}
+	ngOnInit() {}
 
-  getVouchers() {
-    this.fname = "getVouchers()";
+	getVouchers() {
+		this.fname = 'getVouchers()';
 
-    this.httpClient
-      .get<Voucher[]>(`${environment.apiUrl}api/vouchers`)
-      .subscribe(data => {
-        this.result = data;
-      });
-  }
+		this.httpClient.get<Voucher[]>(`${environment.apiUrl}api/vouchers`).subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-  getVoucher() {
-    this.fname = "getVoucher()";
+	getVoucher() {
+		this.fname = 'getVoucher()';
 
-    this.httpClient
-      .get<Voucher>(`${environment.apiUrl}api/vouchers/2`)
-      .subscribe(data => {
-        this.result = data;
-      });
-  }
+		this.httpClient.get<Voucher>(`${environment.apiUrl}api/vouchers/2`).subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-  insertVoucher() {
-    this.fname = "insertVoucher()";
+	insertVoucher() {
+		this.fname = 'insertVoucher()';
 
-    var voucher = { Text: "Inserted by Angular", Date: new Date() };
-    console.log("Voucher to insert: ", voucher);
-    this.httpClient
-      .post(`${environment.apiUrl}api/vouchers`, voucher)
-      .subscribe(data => {
-        if (data == null) this.result = "Voucher inserted";
-      });
-  }
+		var voucher = { Text: 'Inserted by Angular', Date: new Date() };
+		console.log('Voucher to insert: ', voucher);
+		this.httpClient.post(`${environment.apiUrl}api/vouchers`, voucher).subscribe((data) => {
+			if (data == null) this.result = 'Voucher inserted';
+		});
+	}
 
-  updateVoucher() {
-    this.fname = "updateVoucher()";
+	updateVoucher() {
+		this.fname = 'updateVoucher()';
 
-    this.httpClient
-      .get(`${environment.apiUrl}api/vouchers/3`)
-      .subscribe(data => {
-        let vtu: Voucher = <Voucher>data;
-        vtu.Text = "Updated by Angular";
-        console.log("Voucher to update: ", vtu);
-        this.httpClient
-          .put(`${environment.apiUrl}api/vouchers/`, vtu)
-          .subscribe(data => {
-            this.result = "voucher updated";
-          });
-      });
-  }
+		this.httpClient.get(`${environment.apiUrl}api/vouchers/3`).subscribe((data) => {
+			let vtu: Voucher = <Voucher>data;
+			vtu.Text = 'Updated by Angular';
+			console.log('Voucher to update: ', vtu);
 
-  deleteVoucher() {
-    this.fname = "deleteVoucher()";
+			//to the actual update
+			this.httpClient.put(`${environment.apiUrl}api/vouchers/`, vtu).subscribe((data) => {
+				this.result = 'voucher updated';
+			});
+		});
+	}
 
-    var id = 1002;
-    this.httpClient
-      .delete(`${environment.apiUrl}api/vouchers/${id}`)
-      .subscribe(data => {
-        this.result = `voucher with id ${id} deleted`;
-        console.log(this.result);
-      });
-  }
+	deleteVoucher() {
+		this.fname = 'deleteVoucher()';
 
-  getSum() {
-    this.fname = "getSum()";
+		var id = 1002;
+		this.httpClient.delete(`${environment.apiUrl}api/vouchers/${id}`).subscribe((data) => {
+			this.result = `voucher with id ${id} deleted`;
+			console.log(this.result);
+		});
+	}
 
-    this.httpClient
-      .get(`${environment.apiUrl}api/vouchers/getsum/true`)
-      .subscribe(response => {
-        this.result = response;
-        console.log("getSum()", this.result);
-      });
-  }
+	getSum() {
+		this.fname = 'getSum()';
 
-  getVM() {
-    this.fname = "getVM()";
+		this.httpClient.get(`${environment.apiUrl}api/vouchers/getsum/true`).subscribe((response) => {
+			this.result = response;
+			console.log('getSum()', this.result);
+		});
+	}
 
-    this.httpClient
-      .get(`${environment.apiUrl}api/vouchers/getvm/1`)
-      .subscribe(data => {
-        this.result = data;
-      });
-  }
+	getVM() {
+		this.fname = 'getVM()';
 
-  doSave() {
-    this.fname = "doSave()";
+		this.httpClient.get(`${environment.apiUrl}api/vouchers/getvm/1`).subscribe((data) => {
+			this.result = data;
+		});
+	}
 
-    let voucher = {
-      ID: 2,
-      Text: "BP Tankstelle",
-      Date: "2017-06-27T14:30:04.8849651",
-      Amount: 65,
-      Paid: false,
-      Expense: true,
-      Remark: true
-    };
+	doSave() {
+		this.fname = 'doSave()';
 
-    console.log("Saving voucher ", voucher);
+		let voucher = {
+			ID: 2,
+			Text: 'BP Tankstelle',
+			Date: '2017-06-27T14:30:04.8849651',
+			Amount: 65,
+			Paid: false,
+			Expense: true,
+			Remark: true
+		};
 
-    this.httpClient
-      .post(`${environment.apiUrl}api/vouchers/save`, voucher)
-      .subscribe(data => {
-        response => (this.result = `Voucher with id ${response} was saved`);
-      });
-  }
+		console.log('Saving voucher ', voucher);
+
+		this.httpClient.post(`${environment.apiUrl}api/vouchers/save`, voucher).subscribe((data) => {
+			(response) => (this.result = `Voucher with id ${response} was saved`);
+		});
+	}
 }
