@@ -1,6 +1,5 @@
-import { HttpClient } from "@angular/common/http";
-import { Component, OnInit } from "@angular/core";
-
+import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import {
   forkJoin,
   interval,
@@ -8,7 +7,7 @@ import {
   of,
   Subscription,
   throwError
-} from "rxjs";
+} from 'rxjs';
 import {
   catchError,
   delay,
@@ -17,18 +16,18 @@ import {
   map,
   take,
   tap
-} from "rxjs/operators";
+} from 'rxjs/operators';
 
-import { environment } from "src/environments/environment";
-import { isArray } from "util";
-import { Voucher } from "../model";
-import { VouchersService } from "../voucher.service";
-import { DoublerService } from "./doubler.service";
+import { environment } from 'src/environments/environment';
+import { isArray } from 'util';
+import { Voucher } from '../model';
+import { VouchersService } from '../voucher.service';
+import { DoublerService } from './doubler.service';
 
 @Component({
-  selector: "app-operators",
-  templateUrl: "./operators.component.html",
-  styleUrls: ["./operators.component.scss"]
+  selector: 'app-operators',
+  templateUrl: './operators.component.html',
+  styleUrls: ['./operators.component.scss']
 })
 export class OperatorsComponent implements OnInit {
   constructor(
@@ -58,53 +57,53 @@ export class OperatorsComponent implements OnInit {
       .getVouchers()
       .pipe(
         //Obs Operator map()
-        map(vs => {
+        map(va => {
           //ES6 array.map()
-          return vs.map(v => ({
+          return va.map(v => ({
             ...v,
             Label: `${v.Text} costs € ${v.Amount}`
           }));
         })
       )
-      .subscribe(data => this.log("use map() - RxJS 5 pattern", data));
+      .subscribe(data => this.log('use map() - RxJS 5 pattern', data));
   }
 
   useMapAndTap() {
     this.vs
       .getVouchers()
       .pipe(
-        tap(data => console.log("logged using tap() operator: ", data)),
-        map(vs => vs.map(this.setLabel))
+        tap(data => console.log('logged using tap() operator: ', data)),
+        map(va => va.map(this.setLabel))
       )
-      .subscribe(data => this.log("use pipe(), map() & tap()", data));
+      .subscribe(data => this.log('use pipe(), map() & tap()', data));
   }
 
   errHandling() {
     this.vs
       .getVouchers()
       .pipe(
-        tap(data => console.log("logged by tap(): ", data)),
-        map(vs => vs.map(this.setLabel)),
+        tap(data => console.log('logged by tap(): ', data)),
+        map(va => va.map(this.setLabel)),
         catchError(err => {
-          return throwError("Err happened while processing vouchers");
+          return throwError('Err happened while processing vouchers');
         }),
-        finalize(() => console.log("finalizing ..."))
+        finalize(() => console.log('finalizing ...'))
       )
-      .subscribe(data => this.log("errHandling", data));
+      .subscribe(data => this.log('errHandling', data));
   }
 
   useFind() {
     this.vs
       .getVouchers()
       .pipe(map(v => v.find((v: Voucher) => v.ID == 3)))
-      .subscribe(data => this.log("getByID - using find()", data));
+      .subscribe(data => this.log('getByID - using find()', data));
   }
 
   useFilter() {
     this.vs
       .getVouchers()
       .pipe(map(v => v.filter((v: Voucher) => v.Paid)))
-      .subscribe(data => this.log("useFilter", data));
+      .subscribe(data => this.log('useFilter', data));
   }
 
   //Compare the two outputs
@@ -112,7 +111,7 @@ export class OperatorsComponent implements OnInit {
     this.vs
       .getVouchers()
       .pipe(take(3))
-      .subscribe(data => this.log("useTake", data));
+      .subscribe(data => this.log('useTake', data));
   }
 
   useInterval() {
@@ -122,8 +121,8 @@ export class OperatorsComponent implements OnInit {
   }
 
   useDelay() {
-    var fakeObservable = of(["hund", "katze", "maus"]).pipe(delay(5000));
-    console.log("before delay execution - waiting 5 secs");
+    var fakeObservable = of(['hund', 'katze', 'maus']).pipe(delay(5000));
+    console.log('before delay execution - waiting 5 secs');
     fakeObservable.subscribe(data => console.log(data));
   }
 
@@ -139,7 +138,7 @@ export class OperatorsComponent implements OnInit {
           );
         })
       )
-      .subscribe(acct => console.log("acct", acct));
+      .subscribe(acct => console.log('acct', acct));
   }
 
   public requestMockVM(): Observable<number[]> {

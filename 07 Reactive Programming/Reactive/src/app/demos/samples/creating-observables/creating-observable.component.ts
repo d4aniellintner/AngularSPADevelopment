@@ -1,17 +1,17 @@
-import { Component, OnInit } from "@angular/core";
-import { Subscription, Observable, from, of } from "rxjs";
-import { map, filter } from "rxjs/operators";
-import * as $ from "jquery";
+import { Component, OnInit } from '@angular/core';
+import { Subscription, Observable, from, of } from 'rxjs';
+import { map, filter } from 'rxjs/operators';
+import * as $ from 'jquery';
 
 @Component({
-  selector: "app-simple-observable",
-  templateUrl: "./creating-observable.component.html",
-  styleUrls: ["./creating-observable.component.scss"]
+  selector: 'app-simple-observable',
+  templateUrl: './creating-observable.component.html',
+  styleUrls: ['./creating-observable.component.scss']
 })
 export class CreatingObservableComponent implements OnInit {
   constructor() {}
 
-  url = "/assets/vouchers.json";
+  url = '/assets/vouchers.json';
   numbers = [2, 5, 9, 12, 22];
 
   result$: Observable<any>;
@@ -21,7 +21,7 @@ export class CreatingObservableComponent implements OnInit {
     console.log(err);
   };
 
-  complete = () => console.log("complete");
+  complete = () => console.log('complete');
 
   ngOnInit() {}
 
@@ -44,7 +44,7 @@ export class CreatingObservableComponent implements OnInit {
 
     this.result$.subscribe((
       data: number //onNext
-    ) => console.log("current number: ", data));
+    ) => console.log('current number: ', data));
     this.errHandler; //onErr
     this.complete; //onComplete
   }
@@ -53,7 +53,7 @@ export class CreatingObservableComponent implements OnInit {
     this.result$ = from(this.numbers);
 
     this.nbrSubscription = this.result$.subscribe(
-      (data: number) => console.log("useObsFrom: ", data), //onNext
+      (data: number) => console.log('useObsFrom: ', data), //onNext
       this.errHandler, //onErr
       this.complete //onComplete
     );
@@ -86,17 +86,15 @@ export class CreatingObservableComponent implements OnInit {
 
   //Use the wrapped Callback
   wrappingCallbacks() {
-    window.navigator.onLine;
-
     this.getGeolocation$().subscribe(loc => {
-      console.log("current Geolocation:", loc);
+      console.log('current Geolocation:', loc);
     });
   }
 
   //Wrapping a Promise
   usePromiseToObs() {
-    let url = "https://jsonplaceholder.typicode.com/todos";
-    from($.ajax(url)).subscribe(data => console.log("data from jquery", data));
+    let url = 'https://jsonplaceholder.typicode.com/todos';
+    from($.ajax(url)).subscribe(data => console.log('data from jquery', data));
   }
 
   useOperator() {
@@ -105,6 +103,6 @@ export class CreatingObservableComponent implements OnInit {
         filter(n => n > 6),
         map(n => n * 2)
       )
-      .subscribe((data: number) => console.log("useOperator: ", data));
+      .subscribe((data: number) => console.log('useOperator: ', data));
   }
 }
