@@ -1,20 +1,20 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit } from '@angular/core';
 import {
   FormBuilder,
   FormControl,
   FormGroup,
   ValidationErrors,
   Validators
-} from "@angular/forms";
-import { emptyPerson, wealthOpts } from "../empty-person";
-import { Person } from "../person";
-import { PersonService } from "../person.service";
-import { asyncMailExistsValidator } from "./asyncMailExistsValidator";
+} from '@angular/forms';
+import { emptyPerson, wealthOpts } from '../empty-person';
+import { Person } from '../person';
+import { PersonService } from '../person.service';
+import { asyncMailExistsValidator } from './asyncMailExistsValidator';
 
 @Component({
-  selector: "app-reactive-validation",
-  templateUrl: "./reactive-validation.component.html",
-  styleUrls: ["./reactive-validation.component.scss"]
+  selector: 'app-reactive-validation',
+  templateUrl: './reactive-validation.component.html',
+  styleUrls: ['./reactive-validation.component.scss']
 })
 export class ReactiveValidationComponent implements OnInit {
   person: Person = emptyPerson;
@@ -25,7 +25,7 @@ export class ReactiveValidationComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private ps: PersonService,
-    private mailExistsValidatior: asyncMailExistsValidator
+    private mailExistsValidator: asyncMailExistsValidator
   ) {}
 
   ngOnInit() {
@@ -51,8 +51,8 @@ export class ReactiveValidationComponent implements OnInit {
       email: [
         this.person.email,
         [Validators.required, Validators.email],
-        [this.mailExistsValidatior],
-        { updateOn: "blur" }
+        [this.mailExistsValidator],
+        { updateOn: 'blur' }
       ],
       wealth: [this.person.wealth]
     });
@@ -60,7 +60,7 @@ export class ReactiveValidationComponent implements OnInit {
 
   private subscribeChanges() {
     this.personForm.valueChanges.subscribe(vals => {
-      console.log("changes happening @form: ", vals);
+      console.log('changes happening @form: ', vals);
     });
   }
 
@@ -70,7 +70,7 @@ export class ReactiveValidationComponent implements OnInit {
 
   //Sample for custom Validator
   validateName(control: FormControl): { [s: string]: boolean } {
-    if (control.value === "Hugo") {
+    if (control.value === 'Hugo') {
       return { nameError: true };
     }
     return null;
@@ -81,8 +81,8 @@ export class ReactiveValidationComponent implements OnInit {
     let errs: ValidationErrors = this.personForm.controls.name.errors;
 
     if (errs != null) {
-      console.log("Errors in Name field: ", errs);
-      if (errs["minlength"]) {
+      console.log('Errors in Name field: ', errs);
+      if (errs['minlength']) {
         result = true;
       }
     }
@@ -91,6 +91,6 @@ export class ReactiveValidationComponent implements OnInit {
 
   validateForm(form) {
     form.updateValueAndValidity();
-    form.controls["name"].updateValueAndValidity();
+    form.controls['name'].updateValueAndValidity();
   }
 }
