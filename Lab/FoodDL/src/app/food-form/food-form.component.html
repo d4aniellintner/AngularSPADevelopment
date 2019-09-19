@@ -1,14 +1,46 @@
-<div>
-    <input
-    placeholder="Name"
-    [(ngModel)]="food.Name"
-    /><br/>
-    <input
-    placeholder="Price"
-    [(ngModel)]="food.Price"
-    /><br/>
-    <input
-    placeholder="Calories"
-    [(ngModel)]="food.Calories"
-    /><br/>
-</div>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Edit your food here: </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form
+            [formGroup]="foodForm"
+            (ngSubmit) = "onSave(foodForm)"
+            role="form"
+            fxLayout="column"
+            fxLayoutGap="5px"
+        >
+            <mat-form-field>
+                <input matInput type="text" placeholder="Name" formControlName="Name" />
+                <mat-error *ngIf="foodForm.get('Name').errors != undefined">
+                    {{foodForm.get('Name').errors | json}}
+                    <!-- 
+                        .errors is an object - following only applies to arrays
+                        <div *ngFor="let e of foodForm.get('Name').errors">{{e}}</div> 
+                    -->
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput type="number" placeholder="Price" formControlName="Price" />
+                <mat-error *ngIf="foodForm.get('Price').errors != undefined">
+                        {{foodForm.get('Price').errors | json}}
+                        <!-- 
+                            .errors is an object - following only applies to arrays
+                            <div *ngFor="let e of foodForm.get('Name').errors">{{e}}</div> 
+                        -->
+                    </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+            <input matInput  type="number" placeholder="Calories" formControlName="Calories"/>
+            <mat-error *ngIf="foodForm.get('Calories').errors != undefined">
+                    {{foodForm.get('Calories').errors | json}}
+                    <!-- 
+                        .errors is an object - following only applies to arrays
+                        <div *ngFor="let e of foodForm.get('Name').errors">{{e}}</div> 
+                    -->
+                </mat-error>
+        </mat-form-field>
+        </form>
+</mat-card-content>
+</mat-card>
