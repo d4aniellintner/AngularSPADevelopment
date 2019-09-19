@@ -1,35 +1,36 @@
-import { CommonModule } from "@angular/common";
-import { HttpClientModule } from "@angular/common/http";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { RouterModule, Routes } from "@angular/router";
-import { MaterialModule } from "../material.module";
-import { VouchersService } from "../vouchers/voucher.service";
-import { DemoContainerComponent } from "./demo-container/demo-container.component";
-import { DemoService } from "./demo.service";
-import { ChildRoutesComponent } from "./samples/child-routes/child-routes.component";
-import { PreloadComponent } from "./samples/preload/preload.component";
-import { RouteGuardsComponent } from "./samples/route-guards/route-guards.component";
-import { RoutingBasicsComponent } from "./samples/routing-basics/routing-basics.component";
-import { SecondaryRoutesComponent } from "./samples/secondary-routes/secondary-routes.component";
-import { ParamMapComponent } from "./samples/param-map/param-map.component";
-import { PmChildComponent } from "./samples/paramMap/pm-child/pm-child.component";
+import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
+import { MaterialModule } from '../material.module';
+import { VouchersService } from '../vouchers/voucher.service';
+import { DemoContainerComponent } from './demo-container/demo-container.component';
+import { DemoService } from './demo.service';
+import { ChildRoutesComponent } from './samples/child-routes/child-routes.component';
+import { PreloadComponent } from './samples/preload/preload.component';
+import { RouteGuardsComponent } from './samples/route-guards/route-guards.component';
+import { RoutingBasicsComponent } from './samples/routing-basics/routing-basics.component';
+import { SecondaryRoutesComponent } from './samples/secondary-routes/secondary-routes.component';
+import { ParamMapComponent } from './samples/param-map/param-map.component';
+import { PmChildComponent } from './samples/paramMap/pm-child/pm-child.component';
+import { AdminModule } from '../admin/admin.module';
 
 const demoRoutes: Routes = [
   {
-    path: "",
+    path: '',
     component: DemoContainerComponent,
     children: [
-      { path: "routingbasics", component: RoutingBasicsComponent },
+      { path: 'routingbasics', component: RoutingBasicsComponent },
       {
-        path: "parammap",
+        path: 'parammap',
         component: ParamMapComponent,
-        children: [{ path: ":id", component: PmChildComponent }]
+        children: [{ path: ':id', component: PmChildComponent }]
       },
-      { path: "childroutes", component: ChildRoutesComponent },
-      { path: "secondary", component: SecondaryRoutesComponent },
-      { path: "routeguards", component: RouteGuardsComponent },
-      { path: "preload", component: PreloadComponent }
+      { path: 'childroutes', component: ChildRoutesComponent },
+      { path: 'secondary', component: SecondaryRoutesComponent },
+      { path: 'routeguards', component: RouteGuardsComponent },
+      { path: 'preload', component: PreloadComponent }
     ]
   }
 ];
