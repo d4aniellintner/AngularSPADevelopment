@@ -1,5 +1,0 @@
-[
-  { "id": 1, "name": "TypeScript", "hours": 3, "completed": false },
-  { "id": 2, "name": "Node", "hours": 2, "completed": false },
-  { "id": 3, "name": "ngBascis", "hours": 30, "completed": false }
-]
