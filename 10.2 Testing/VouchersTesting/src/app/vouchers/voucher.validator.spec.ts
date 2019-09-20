@@ -83,7 +83,7 @@ describe('Testing a simple Class: VoucherValidator', function() {
 	});
 
 	it('returns false when null is passed as Details', function() {
-		debugger;
+		//debugger;
 		expect(VoucherValidator.validate(nullVoucher)).toEqual(false);
 	});
 });

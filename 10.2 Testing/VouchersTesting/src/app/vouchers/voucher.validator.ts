@@ -2,9 +2,8 @@ import { Voucher } from '../shared/model/model';
 
 export class VoucherValidator {
 	static validate(voucher: Voucher) {
-		if (!voucher.Details) return false;
-
-		var detailSumOk: boolean;
+		//a voucher with no Details is not valid
+		var detailSumOk: boolean = false;
 		if (voucher.Details != null) {
 			var sumD = 0;
 			for (let vd of voucher.Details) {

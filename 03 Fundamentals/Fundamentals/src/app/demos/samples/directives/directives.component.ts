@@ -27,7 +27,6 @@ export class DirectivesComponent implements OnInit {
 	getClass() {
 		return 'my-' + this.cssclass;
 	}
-
 	toggleInput() {
 		this.isDisabled = !this.isDisabled;
 	}

@@ -6,11 +6,10 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./expressions.component.scss"]
 })
 export class ExpressionsComponent implements OnInit {
-  title: string = "Expressions & Interpolation";
-
-  nbr: number = 10;
-
   constructor() {}
+
+  title: string = "Expressions & Interpolation";
+  nbr: number = 10;
 
   ngOnInit() {}
 }
