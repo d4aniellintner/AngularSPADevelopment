@@ -41,7 +41,10 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
+            "i18nFile": "messages.de.xlf",
+            "i18nFormat": "xlf",
+            "i18nLocale": "de",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
             "stylePreprocessorOptions": {
@@ -50,6 +53,13 @@
             "scripts": []
           },
           "configurations": {
+            "de": {
+              "aot": true,
+              "outputPath": "dist/my-project-de/",
+              "i18nFile": "src/locale/messages.de.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "de"
+            },
             "production": {
               "fileReplacements": [
                 {
