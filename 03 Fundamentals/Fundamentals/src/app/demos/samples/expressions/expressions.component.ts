@@ -9,7 +9,11 @@ export class ExpressionsComponent implements OnInit {
   constructor() {}
 
   title: string = "Expressions & Interpolation";
-  nbr: number = 10;
+  nbr: number = 6;
 
   ngOnInit() {}
+
+  calc(){
+    return 1 + 3 + this.nbr;
+  }
 }

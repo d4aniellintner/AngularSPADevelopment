@@ -6,7 +6,7 @@
     String Interpolation uses double curly braces to bind values from the VM
     (View Model) to the view.<br />
     Expressions can be used to do dynamic evaluation, calculation, formatting
-    like: 1 + 3 + {{ nbr }} = {{ nbr == 10 ? "zehn" : "ned Zehn" }}
+    like: 1 + 3 + {{ nbr }} = {{ calc() == 10 ? "zehn" : "ned Zehn" }}
   </mat-card-content>
 </mat-card>
 
